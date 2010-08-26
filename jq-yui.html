@@ -1054,18 +1054,4 @@ Rev 23 March 2010  <a href="http://carlos.bueno.org/jq-yui.pdf">carlos.bueno.org
 
 
 </body>
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-	var links = document.getElementsByTagName('a');
-	var query = '?';
-	for(var i = 0; i < links.length; i++) {
-	if(links[i].href.indexOf('#disqus_thread') >= 0) {
-		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-	}
-	}
-	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/carlos-bueno/get_num_replies.js' + query + '"></' + 'script>');
-})();
-//]]>
-</script>
 </html>
