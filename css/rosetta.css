@@ -4,105 +4,78 @@ Gill of Gill Sans fame was a student of Edward Johnston, who almost single-hande
 resurrected the art of illumination and calligraphy.
 */
 body {
+  background: #fff;
+  color: #333;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 13px;
   margin: 20px;
 }
 
-h1, h2, h3 {
-   font-weight: normal;
-   margin:0;
+a { color: #33d; }
+
+code { font-weight: bold; }
+
+code, pre {
+  font-family: inconsolata, monofur, profont, menlo, monaco, monospace;
+  font-size: 12px;
 }
+
+code, pre, p { line-height: 1.4; }
+
+h1, h2, h3 {
+  font-weight: normal;
+  margin: 0;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+h3 { font-size: 16px; }
 
 pre { margin: 0; }
-
-pre, pre *, code, td, p {
-    line-height: 1.4em;
-    font-size: 10pt;
-}
-
-pre, pre *, code {
-    font-size: 12px;
-    font-family: inconsolata, monofur, profont, monaco, courier;
-}
-
-pre.jq {
-   color: #900;
-}
-pre.yui {
-   color: #009;
-}
-
-code {
-    font-weight: bold;
-}
-
-td.code {
-    width: 30%;
-}
-
-td.notes {
-    width: 40%;
-    background: #f2f2f2;
-}
-
-.notes p:first-child { margin-top: 0; }
-.notes p:last-child { margin-bottom: 0; }
+pre.code i { color: #666; }
+pre.jq { color: #900; }
+pre.yui { color: #009; }
 
 table {
-    border-spacing: 0;
-    width: 100%;
-    margin-bottom: 2em;
+  border-spacing: 0;
+  margin-bottom: 2em;
+  width: 100%;
 }
 
 td {
-    border-top: solid 1px #ddd;
-    vertical-align: top;
-    padding: 8px 14px;
+  border-top: 1px solid #ddd;
+  padding: 8px 14px;
+  vertical-align: top;
 }
+
+td.code { width: 30%; }
+
+td.notes {
+  background: #f2f2f2;
+  width: 40%;
+}
+
+td.notes p:first-child { margin-top: 0; }
+td.notes p:last-child { margin-bottom: 0; }
 
 tr.head td {
-    text-align: left;
-    border-bottom: solid 1px #666;
-    background: none;
-    border-top:none;
+  background: none;
+  border-bottom: 1px solid #666;
+  border-top: none;
+  text-align: left;
 }
 
-pre.code i {
-    color:#666;
-}
+.printonly { display: none; }
 
 .section {
-    margin: 0;
-    color: #000;
+  color: #000;
+  margin: 0;
 }
 
-.printonly {
-    display:none;
-}
-
-ul * {
-    font-size: 12pt;
-}
+.toc { font-size: 16px; }
 
 @media print {
-    .screenonly {
-        display:none;
-    }
-    .printonly {
-        display:block;
-    }
-
-    pre, pre *, code, td, p {
-        font-size: 9pt;
-    }
-    pre, pre *, code {
-        font-size: 8pt;
-    }
-    body {
-        margin: 0;
-    }
-}
-
-a, a:visited {
-   color: #33d;
+  body { margin: 0; }
+  .printonly { display: block; }
+  .screenonly { display: none; }
 }
