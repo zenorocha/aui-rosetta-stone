@@ -22,10 +22,8 @@ code, pre {
 
 code, pre, p { line-height: 1.4; }
 
-h1, h2, h3 {
-  font-weight: normal;
-  margin: 0;
-}
+h1 { margin: 0 0 1em; }
+h2 { margin: 2em 0 0.5em; }
 
 h1 { font-size: 24px; }
 h2 { font-size: 20px; }
@@ -33,10 +31,9 @@ h3 { font-size: 16px; }
 
 pre { margin: 0; }
 pre.code i { color: #666; }
-pre.jq { color: #900; }
-pre.yui { color: #009; }
 
 table {
+  border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: 2em;
   width: 100%;
@@ -44,9 +41,10 @@ table {
 
 td {
   border-top: 1px solid #ddd;
-  padding: 8px 14px;
   vertical-align: top;
 }
+
+td, th { padding: 8px 14px; }
 
 td.code { width: 30%; }
 
@@ -58,19 +56,17 @@ td.notes {
 td.notes p:first-child { margin-top: 0; }
 td.notes p:last-child { margin-bottom: 0; }
 
-tr.head td {
-  background: none;
+th {
   border-bottom: 1px solid #666;
-  border-top: none;
+  font-size: 16px;
+  font-weight: normal;
   text-align: left;
 }
 
-.printonly { display: none; }
+.jq { color: #900; }
+.yui { color: #009; }
 
-.section {
-  color: #000;
-  margin: 0;
-}
+.printonly { display: none; }
 
 .toc { font-size: 16px; }
 
