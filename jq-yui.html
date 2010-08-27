@@ -862,7 +862,7 @@ filtered = Y.all(filtered);
   function(idx, el) {
     some_function(el);
   }
-);
+).get();
 </pre></td>
     <td class="code"><pre class="code yui">var mapped = [];
 Y.all('<i>.foo</i>').each(
@@ -874,7 +874,7 @@ Y.all('<i>.foo</i>').each(
 );
 mapped = Y.all(mapped);
 </pre></td>
-    <td class="notes"><p>jQuery's <code>.map()</code> returns a list of the return values of calls to the given function. <code>NodeList.map(fn)</code> is coming to a future point release of YUI3.</p></td>
+    <td class="notes"><p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function. <code>get()</code> returns a true array. <code>NodeList.map(fn)</code> is coming to a future point release of YUI3.</p></td>
   </tr>
 </table>
 
