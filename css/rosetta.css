@@ -1,0 +1,111 @@
+/*
+Fontgeek Fact:
+Gill of Gill Sans fame was a student of Edward Johnston, who almost single-handedly
+resurrected the art of illumination and calligraphy.
+*/
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", "Helvetica", sans-serif;
+  margin: 20px;
+}
+
+h1, h2, h3 {
+   font-weight: normal;
+   margin:0;
+}
+
+pre { margin: 0; }
+
+pre, pre *, code, td, p {
+    line-height: 1.4em;
+    font-size: 10pt;
+}
+
+pre, pre *, code {
+    font-size: 12px;
+    font-family: inconsolata, monofur, profont, monaco, courier;
+}
+
+pre.jq {
+   color: #900;
+}
+pre.yui {
+   color: #009;
+}
+
+code {
+    font-weight: bold;
+}
+
+td.code {
+    width: 30%;
+}
+
+td.notes {
+    width: 40%;
+    background: #f2f2f2;
+}
+
+.notes p:first-child { margin-top: 0; }
+.notes p:last-child { margin-bottom: 0; }
+
+table {
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+td {
+    border-top: solid 1px #ddd;
+    vertical-align: top;
+    padding: 8px 14px;
+}
+
+tr.head td {
+    text-align: left;
+    border-bottom: solid 1px #666;
+    background: none;
+    border-top:none;
+}
+
+pre.code i {
+    color:#666;
+}
+
+.section {
+    margin: 0;
+    color: #000;
+}
+
+.gloss {
+    display: none;
+}
+.printonly {
+    display:none;
+}
+
+ul * {
+    font-size: 12pt;
+}
+
+@media print {
+    .screenonly {
+        display:none;
+    }
+    .printonly {
+        display:block;
+    }
+
+    pre, pre *, code, td, p {
+        font-size: 9pt;
+    }
+    pre, pre *, code {
+        font-size: 8pt;
+    }
+    body {
+        margin: 0;
+    }
+}
+
+a, a:visited {
+   color: #33d;
+}

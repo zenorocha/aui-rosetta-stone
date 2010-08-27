@@ -1,133 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-/*
-Fontgeek Fact:
-Gill of Gill Sans fame was a student of Edward Johnston, who almost single-handedly
-resurrected the art of illumination and calligraphy.
-*/
-body {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", "Helvetica", sans-serif;
-  margin: 20px;
-}
-
-h1, h2, h3 {
-   font-weight: normal;
-   margin:0;
-}
-
-pre, pre *, code, td, p {
-    line-height: 1.4em;
-    font-size: 10pt;
-}
-
-pre, pre *, code {
-    font-size: 12px;
-    font-family: inconsolata, monofur, profont, monaco, courier;
-}
-
-pre.jq {
-   color: #900;
-}
-pre.yui {
-   color: #009;
-}
-
-code {
-    font-weight: bold;
-}
-
-td.code {
-    width: 30%;
-}
-
-td.notes {
-    width: 40%;
-    background: #f2f2f2;
-}
-
-table {
-    width: 100%;
-    cell-spacing: 0;
-    cell-padding: 0;
-    margin-bottom: 2em;
-}
-
-td {
-    border-top: solid 1px #ddd;
-    vertical-align: top;
-    padding: 8px 14px;
-}
-
-tr.head td {
-    text-align: left;
-    border-bottom: solid 1px #666;
-    background: none;
-    border-top:none;
-}
-
-pre.code i {
-    color:#666;
-}
-
-.section {
-    margin: 0;
-    color: #000;
-}
-
-.gloss {
-    display: none;
-}
-.printonly {
-    display:none;
-}
-
-ul * {
-    font-size: 12pt;
-}
-
-@media print {
-    .screenonly {
-        display:none;
-    }
-    .printonly {
-        display:block;
-    }
-
-    pre, pre *, code, td, p {
-        font-size: 9pt;
-    }
-    pre, pre *, code {
-        font-size: 8pt;
-    }
-    body {
-        margin: 0;
-    }
-}
-
-a, a:visited {
-   color: #33d;
-}
-</style>
-
   <meta charset="utf-8">
   <title>jQuery - YUI3 Rosetta Stone</title>
   <link rel="stylesheet" type="text/css" href="css/rosetta.css">
 </head>
-
-<!--  -->
-
-
 <body>
-
-
 
 <h2>jQuery - YUI3 Rosetta Stone</h2>
 <p class="printonly"><i>23 March 2010</i>  <a href="http://carlos.bueno.org/jq-yui.html">carlos.bueno.org/jq-yui.html</a></p>
 
 
-<ul><!--style="page-break-after: always;">-->
+<ul>
 <li>
   <a href="#start">Getting Started</a> 
   <p class="gloss">YUI3 includes features for dynamic loading and namespacing</p>
@@ -142,7 +26,7 @@ a, a:visited {
   <p class="gloss">YUI3 can operate with three selector engines: browser native (the default), CSS2, and CSS3. This section documents mostly the differences between jQuery and the <a href="http://www.w3.org/TR/css3-selectors/">CSS3 specification</a>.</p>
 </li>
 <li>
-  <a href="#effects">Animations & Effects</a>
+  <a href="#effects">Animations &amp; Effects</a>
   <p class="gloss">The animation libraries of both libraries have substantial overlap, though jQuery makes it a bit easier to combine show() and hide() operations with animated effects.</p>
 </li>
 <li>
@@ -167,11 +51,11 @@ a, a:visited {
 
 
 
-<table cellspacing="0" style="clear:both">
+<table style="clear:both">
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="started"><h2 class="section">Getting Started</h2></a></td>
+    <td class="notes"><h2 id="start" class="section">Getting Started</h2></td>
   </tr>
 
   <tr>
@@ -194,11 +78,11 @@ a, a:visited {
   </tr>
 </table>
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="common"><h2 class="section">Common Idioms</h2></a></td>
+    <td class="notes"><h2 id="common" class="section">Common Idioms</h2></td>
   </tr>
 
   <tr>
@@ -492,11 +376,11 @@ $('&lt;p&gt;foo&lt;p&gt;')
 
 
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="selectors"><h2 class="section">Selectors</h2></a></td>
+    <td class="notes"><h2 id="selectors" class="section">Selectors</h2></td>
   </tr>
 
   <tr>
@@ -625,7 +509,7 @@ Y.all(Y.all('div')._nodes.slice(0,<i>n</i>));</pre></td>
     <td class="code"><pre class="code jq">$('div:hidden')</pre></td>
     <td class="code"><pre class="code yui">var hidden = [];
 Y.all('div').each(function(node) {
-    if ((node.get('offsetWidth') === 0 &&
+    if ((node.get('offsetWidth') === 0 &amp;&amp;
         node.get('offsetHeight') === 0) ||
         node.get('display') === 'none') {
         hidden.push(node);
@@ -726,11 +610,11 @@ if (lst) {
   </tr>
 </table>
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="effects"><h2 class="section">Effects</h2></a></td>
+    <td class="notes"><h2 id="effects" class="section">Effects</h2></td>
   </tr>
 
   <tr>
@@ -790,11 +674,11 @@ a.run();</pre></td>
 
 </table>
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="nodelist"><h2 class="section">Array vs NodeList</h2></a></td>
+    <td class="notes"><h2 id="nodelist" class="section">Array vs NodeList</h2></td>
   </tr>
 
   <tr>
@@ -882,11 +766,11 @@ mapped = Y.all(mapped);
 </table>
 
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="ajax"><h2 class="section">Ajax</h2></a></td>
+    <td class="notes"><h2 id="ajax" class="section">Ajax</h2></td>
   </tr>
 
   <tr>
@@ -934,11 +818,11 @@ Y.io('<i>/ajax/test.html</i>', {
 </table>
 
 
-<table cellspacing="0">
+<table>
   <tr class="head">
     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td>
     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td>
-    <td class="notes"><a name="css"><h2 class="section">CSS</h2></a></td>
+    <td class="notes"><h2 id="css" class="section">CSS</h2></td>
   </tr>
 
   <tr>
@@ -1023,11 +907,11 @@ Y.io('<i>/ajax/test.html</i>', {
 </table>
 
 
-<!-- <table cellspacing="0"> -->
+<!-- <table> -->
 <!--   <tr class="head"> -->
 <!--     <td class="code"><h3 style="color:#900;">jQuery 1.4.2</h3></td> -->
 <!--     <td class="code"><h3 style="color:#009;">YUI 3.0.0</h3></td> -->
-<!--     <td class="notes"><a name=""><h2 class="section"></h2></a></td> -->
+<!--     <td class="notes"><h2 id="anchor" class="section"></h2></td> -->
 <!--   </tr> -->
 
 <!--   <tr> -->
@@ -1045,11 +929,14 @@ Y.io('<i>/ajax/test.html</i>', {
 <!-- </table> -->
 
 
-<p class="printonly"><hr/>
-Rev 23 March 2010  <a href="http://carlos.bueno.org/jq-yui.pdf">carlos.bueno.org/jq-yui.pdf</a></p>
+<hr>
+
+<p class="printonly">
+Rev 23 March 2010  <a href="http://carlos.bueno.org/jq-yui.pdf">carlos.bueno.org/jq-yui.pdf</a>
+</p>
 
 <div class="screenonly">
-<a name="contrib"><h2>How to Contribute</h2></a>
+<h2 id="contrib">How to Contribute</h2>
 <p>If you find a bug or want to add to this list, fork the <a href="http://github.com/rgrove/jquery-yui3-rosetta-stone">project on GitHub</a> and send a pull request, or file an issue. Enjoy!</p>
 </div>
 
