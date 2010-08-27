@@ -597,7 +597,10 @@ Y.all('div').odd()</pre></td>
 
   <tr>
     <td class="code"><pre class="code jq">$('div:gt(<i>n</i>)');
-$('div:lt(<i>n</i>)');</pre></td>
+$('div:lt(<i>n</i>)');
+<i>// or</i>
+$('div').slice(<i>n + 1</i>);
+$('div').slice(0,<i>n</i>);</pre></td>
     <td class="code"><pre class="code yui">Y.all(Y.all('div')._nodes.slice(<i>n + 1</i>));
 Y.all(Y.all('div')._nodes.slice(0,<i>n</i>));</pre></td>
     <td class="notes"><p>Extension. <code>:gt</code> (greater than) selects all elements from index <code>n+1</code> onwards. <code>:lt</code> (less than) selects all nodes from 0 up to <code>n-1</code>. Note that in the YUI3 example we have to access the private <code>_nodes</code> array and perform a <code>slice()</code>. <code>NodeList.slice()</code> and friends may be added in an upcoming point release. The double call to <code>Y.all()</code> is explained in <a href="#nodelist">Arrays vs NodeList</a>.</p></td>
