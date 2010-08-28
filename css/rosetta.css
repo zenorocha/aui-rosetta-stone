@@ -9,9 +9,12 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", "Helvetica", sans-serif;
   font-size: 13px;
   margin: 20px;
+a {
+  color: #33d;
+  text-decoration: none;
 }
 
-a { color: #33d; }
+a:hover { text-decoration: underline; }
 
 code { font-weight: bold; }
 
