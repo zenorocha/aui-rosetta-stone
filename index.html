@@ -22,7 +22,7 @@
     <a href="#nodelist">Array vs. NodeList</a>
     <!--
     TODO: Figure out a better place for summaries like this. And make them visible.
-    <p class="gloss">The fundamental unit of jQuery is a Javascript Array containing 0 or more DOM elements. These Array objects have extra <code>.on()</code>, <code>.click()</code>, <code>.map()</code>, etc methods attached to them in addition to the built-in list operations like <code>.slice()</code> and <code>.concat()</code>. </p>
+    <p class="gloss">The fundamental unit of jQuery is a JavaScript Array containing 0 or more DOM elements. These Array objects have extra <code>.on()</code>, <code>.click()</code>, <code>.map()</code>, etc methods attached to them in addition to the built-in list operations like <code>.slice()</code> and <code>.concat()</code>. </p>
     <p class="gloss">The fundamental units in YUI are <a href="http://developer.yahoo.com/yui/3/api/Node.html">Node</a> objects, which wrap DOM elements, and <a href="http://developer.yahoo.com/yui/3/api/NodeList.html">NodeList</a>s which are collections of Nodes. NodeLists are not Arrays and are not natively iterable.</p>
     -->
   </li>
@@ -60,7 +60,7 @@ YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>',
       <td class="notes">
         <p>The <code>jQuery</code> and <code>$</code> objects are globals and the jQuery library itself is statically loaded, so they are available immediately.</p>
 
-        <p>YUI3 is a little different. It is sandboxed and by default dynamically loaded. The <code>Y</code> object is local to the function you pass as the last argument to <code>YUI().use()</code>. Usually you will put all code that uses YUI3 inside one of these functions. This function executes <b>after</b> all the referenced modules are loaded and accounted for. This makes for a cleaner Javascript namespace at the cost of some boilerplate. The return value of <code>YUI().use()</code> is also a Y object, which you can assign to a global variable [ eg <code class="nowrap">Y = YUI().use(...);</code> ] and debug with it in a Javascript console.</p>
+        <p>YUI3 is a little different. It is sandboxed and by default dynamically loaded. The <code>Y</code> object is local to the function you pass as the last argument to <code>YUI().use()</code>. Usually you will put all code that uses YUI3 inside one of these functions. This function executes <b>after</b> all the referenced modules are loaded and accounted for. This makes for a cleaner JavaScript namespace at the cost of some boilerplate. The return value of <code>YUI().use()</code> is also a Y object, which you can assign to a global variable [ eg <code class="nowrap">Y = YUI().use(...);</code> ] and debug with it in a JavaScript console.</p>
       </td>
     </tr>
   </tbody>
