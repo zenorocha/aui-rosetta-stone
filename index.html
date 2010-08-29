@@ -22,12 +22,13 @@
     <a href="#nodelist">Array vs. NodeList</a>
     <!--
     TODO: Figure out a better place for summaries like this. And make them visible.
-    <p class="gloss">The fundamental unit of jQuery is a Javascript Array containing 0 or more DOM elements. These Array objects have extra <code>.on()</code>, <code>.click()</code>, <code>.map()</code>, etc methods attached to them in addition to the built-in list operations like <code>.slice()</code> and <code>.concat()</code>. </p>
+    <p class="gloss">The fundamental unit of jQuery is a JavaScript Array containing 0 or more DOM elements. These Array objects have extra <code>.on()</code>, <code>.click()</code>, <code>.map()</code>, etc methods attached to them in addition to the built-in list operations like <code>.slice()</code> and <code>.concat()</code>. </p>
     <p class="gloss">The fundamental units in YUI are <a href="http://developer.yahoo.com/yui/3/api/Node.html">Node</a> objects, which wrap DOM elements, and <a href="http://developer.yahoo.com/yui/3/api/NodeList.html">NodeList</a>s which are collections of Nodes. NodeLists are not Arrays and are not natively iterable.</p>
     -->
   </li>
   <li><a href="#ajax">Ajax</a></li>
   <li><a href="#css">CSS</a></li>
+  <li><a href="#credits">Credits</a></li>
   <li class="screenonly"><a href="#contrib">How to Contribute</a></li>
 </ul>
 
@@ -37,7 +38,7 @@
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -49,17 +50,28 @@
       </td>
       <td class="code">
 <pre class="code yui">
-YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>',
-  function(Y) {
-    Y<i>.foo.bar()</i>
-  }
-);
+YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
+  Y<i>.foo.bar()</i>
+});
 </pre>
       </td>
       <td class="notes">
         <p>The <code>jQuery</code> and <code>$</code> objects are globals and the jQuery library itself is statically loaded, so they are available immediately.</p>
 
-        <p>YUI3 is a little different. It is sandboxed and by default dynamically loaded. The <code>Y</code> object is local to the function you pass as the last argument to <code>YUI().use()</code>. Usually you will put all code that uses YUI3 inside one of these functions. This function executes <b>after</b> all the referenced modules are loaded and accounted for. This makes for a cleaner Javascript namespace at the cost of some boilerplate. The return value of <code>YUI().use()</code> is also a Y object, which you can assign to a global variable [ eg <code class="nowrap">Y = YUI().use(...);</code> ] and debug with it in a Javascript console.</p>
+        <p>
+          YUI3 is sandboxed and by default dynamically loaded. The
+          <code>Y</code> object is local to the function you pass as the last
+          argument to <code>YUI().use()</code>. Usually you will put all code
+          that uses YUI3 inside one of these functions. This function executes
+          <b>after</b> all the referenced modules are loaded and accounted for.
+        </p>
+
+        <p>
+          The return value of <code>YUI().use()</code> is also a Y object, which
+          you can assign to a global variable [e.g.
+          <code class="nowrap">var Y = YUI().use(&hellip;);</code>] and debug
+          with it in a JavaScript console.
+        </p>
       </td>
     </tr>
   </tbody>
@@ -71,7 +83,7 @@ YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>',
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -99,8 +111,9 @@ foo.<i>some_method()</i>;
       <td class="code">
 <pre class="code yui">
 var foo = Y.one('div.foo');
+
 if (foo) {
-    foo.<i>some_method()</i>;
+  foo.<i>some_method()</i>;
 }
 </pre>
       </td>
@@ -126,16 +139,18 @@ if (foo) {
       <td class="code">
 <pre class="code jq">
 var foo = $('div.foo');
+
 if (foo.length) {
-    <i>// do something</i>
+  <i>// do something</i>
 }
 </pre>
       </td>
       <td class="code">
 <pre class="code yui">
 var foo = Y.all('div.foo');
-if (foo.size() > 0) {
-    <i>// do something</i>
+
+if (foo.size()) {
+  <i>// do something</i>
 }
 </pre>
       </td>
@@ -253,7 +268,7 @@ if (foo.size() > 0) {
 </pre>
       </td>
       <td class="notes">
-        <p><code>.on()</code> is not repeat not chainable by default!</p>
+        <p><code>.on()</code> is not chainable by default.</p>
       </td>
     </tr>
 
@@ -323,14 +338,22 @@ $('&lt;p&gt;foo&lt;p&gt;')
 
     <tr>
       <td class="code">
-        <pre class="code jq">.siblings()</pre>
+<pre class="code jq">
+.siblings()
+.siblings(<i>selector</i>)
+</pre>
       </td>
       <td class="code">
-        <pre class="code yui">.get('parentNode').get('children')</pre>
+<pre class="code yui">
+.siblings()
+.siblings(<i>selector</i>)
+.siblings(<i>function</i>)
+</pre>
       </td>
       <td class="notes">
         <p>
-          Note that the YUI3 code is not equivalent: it will contain all child elements including the caller. YUI3 may add support for <code>.siblings()</code> in a later release.
+          In addition to an optional selector string, YUI3 also supports passing
+          a function to filter the returned siblings.
         <p>
       </td>
     </tr>
@@ -361,7 +384,7 @@ $('&lt;p&gt;foo&lt;p&gt;')
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -437,8 +460,8 @@ Y.all(':enabled')
 
     <tr>
       <td class="code"><pre class="code jq">$(':parent')</pre></td>
-      <td class="code"><pre class="code yui"></pre></td>
-      <td class="notes"><p>Extension. Inverse of <code>:empty</code>. Will find all elements that are a parent of at least one element.</p></td>
+      <td class="code"><pre class="code yui">Y.all(':not(:empty)')</pre></td>
+      <td class="notes"><p>Inverse of <code>:empty</code>. Will find all elements that are a parent of at least one element. jQuery's version is an extension. YUI's is CSS3.</p></td>
     </tr>
 
     <tr>
@@ -528,7 +551,7 @@ hidden = Y.all(hidden);
 </pre>
       </td>
       <td class="notes">
-        <p>Extension. This is a weird one. In jQuery > 1.3.2 <code>:hidden</code> selects all elements (or descendents of elements) which <a href="http://docs.jquery.com/Release:jQuery_1.3.2#:visible.2F:hidden_Overhauled">take up no visual space</a>. Elements with <code>display:none</code> or whose <code>offsetWidth/offsetHeight</code> equal 0 are considered hidden. Elements with <code>visibility:hidden</code> are not considered hidden.</p>
+        <p>Extension. In jQuery > 1.3.2 <code>:hidden</code> selects all elements (or descendents of elements) which <a href="http://docs.jquery.com/Release:jQuery_1.3.2#:visible.2F:hidden_Overhauled">take up no visual space</a>. Elements with <code>display:none</code> or whose <code>offsetWidth/offsetHeight</code> equal 0 are considered hidden. Elements with <code>visibility:hidden</code> are not considered hidden.</p>
         <p>The YUI3 equivalent would essentially be a port of the jQuery code that implements <code>:hidden</code>. This might be a good candidate for a patch to YUI3.</p>
       </td>
     </tr>
@@ -562,13 +585,15 @@ hidden = Y.all(hidden);
       <td class="code"><pre class="code jq">$('div:last')</pre></td>
       <td class="code">
 <pre class="code yui">
-var lst = Y.all('div');
-if (lst) {
-    var last = lst.item(lst.size()-1);
+var list = Y.all('div'),
+    last;
+
+if (list.size()) {
+  last = list.item(list.size() - 1);
 }
 </pre>
       </td>
-      <td class="notes"><p>The YUI equivalent is cumbersome, but I'm not sure if <code>:last</code> is popular enough to warrant a patch.</p></td>
+      <td class="notes">Extension. Selects the last element matched by the selector.</td>
     </tr>
 
     <tr>
@@ -627,7 +652,7 @@ if (lst) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -668,7 +693,7 @@ a.run();
       </td>
       <td class="notes">
         <p>The basic syntax and capabilities of both animation libraries are very similar. jQuery has convenience methods for effects like <code>.fadeIn()</code>, <code>.slideUp()</code>, etc. jQuery core has two easing functions: 'linear' and 'swing', but jQuery UI comes with <a href="http://jqueryui.com/demos/effect/">many more effects</a> as plugins.</p>
-        <p>YUI3 has several <a href="http://developer.yahoo.com/yui/3/api/Easing.html">easing algorithms</a> built-in, and offers powerful tools such as <a href="http://developer.yahoo.com/yui/3/examples/anim/curve.html">animations over Besizer curves</a>. Make sure to load the <code>'anim'</code> module in your call to <code>YUI().use()</code>.</p>
+        <p>YUI3 has several <a href="http://developer.yahoo.com/yui/3/api/Easing.html">easing algorithms</a> built-in, and offers additional tools such as <a href="http://developer.yahoo.com/yui/3/examples/anim/curve.html">animations over Bezier curves</a>. Make sure to load the <code>'anim'</code> module in your call to <code>YUI().use()</code>.</p>
       </td>
     </tr>
 
@@ -700,7 +725,7 @@ a.run();
       </td>
       <td class="notes">
         <p><code>.fadeOut()</code> fades the opacity to 0, then sets <code>display:none</code> on the element. <code>fadeIn()</code> is naturally the inverse. Note that jQuery effects tend to default to 200 or 600ms while YUI defaults to 1,000ms. YUI durations are in fractions of seconds; jQuery durations are set in milliseconds.</p>
-        <p>Annoyingly, YUI Anim objects have events you can attach functions to, but you have to poke the private <code>_node</code> property to retrieve the element being animated.</p>
+        <p>YUI Anim objects have events you can attach functions to, but you have to poke the private <code>_node</code> property to retrieve the element being animated.</p>
       </td>
     </tr>
   </tbody>
@@ -712,7 +737,7 @@ a.run();
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -721,7 +746,7 @@ a.run();
     <tr>
       <td class="code"><pre class="code jq">$('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
       <td class="code"><pre class="code yui">Y.all(Y.all('<i>.foo</i>')._nodes.<i>array_method</i>(<i>args</i>))</pre></td>
-      <td class="notes"><p>Any Array operation that you can perform on a jQuery list can be translated to YUI in this form. YUI NodeList objects are not native Arrays, but the private <code>_nodes</code> property is. However, calling list operations like <code>.concat()</code> on <code>._nodes</code> results in an array of DOM elements, not a NodeList. To generate a new NodeList for the new array, you have wrap it in a call to <code>Y.all()</code>. All of this wrapping and unwrapping suggests a patch to YUI.</p></td>
+      <td class="notes"><p>Any Array operation that you can perform on a jQuery list can be translated to YUI in this form. YUI NodeList objects are not native Arrays, but the private <code>_nodes</code> property is. However, calling list operations like <code>.concat()</code> on <code>._nodes</code> results in an array of DOM elements, not a NodeList. To generate a new NodeList for the new array, you have wrap it in a call to <code>Y.all()</code>.</p></td>
     </tr>
 
     <tr>
@@ -833,7 +858,7 @@ mapped = Y.all(mapped);
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -858,7 +883,7 @@ Y.io(<i>url</i>, {
 </pre>
       </td>
       <td class="notes">
-        <p><a href="http://developer.yahoo.com/yui/3/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI 'io' module.</p>
+        <p><a href="http://developer.yahoo.com/yui/3/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>'io'</code> module.</p>
       </td>
     </tr>
 
@@ -905,7 +930,7 @@ Y.io('<i>/ajax/test.html</i>', {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1032,7 +1057,7 @@ Y.io('<i>/ajax/test.html</i>', {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.0.0</th>
+      <th class="yui">YUI 3.1.2</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1059,13 +1084,28 @@ Y.io('<i>/ajax/test.html</i>', {
 </table>
 -->
 
+<h2 id="credits">Credits</h2>
+
+<p>
+  The jQuery - YUI3 Rosetta Stone was originally created by
+  <a href="http://carlos.bueno.org/">Carlos Bueno</a>. It's now maintained by
+  the <a href="http://yuilibrary.com/">YUI team</a> and
+  <a href="http://paulirish.com/">Paul Irish</a>.
+</p>
+
 <p class="printonly">
   <a href="http://www.jsrosettastone.com/">www.jsrosettastone.com</a>
 </p>
 
 <div class="screenonly">
   <h2 id="contrib">How to Contribute</h2>
-  <p>If you find a bug or want to add to this list, fork the <a href="http://github.com/rgrove/jquery-yui3-rosetta-stone">project on GitHub</a> and send a pull request, or file an issue. Enjoy!</p>
+  <p>
+    Please
+    <a href="http://github.com/rgrove/jquery-yui3-rosetta-stone/issues">file
+    bugs and recommend changes</a> on GitHub. You're also more than welcome to
+    fork the <a href="http://github.com/rgrove/jquery-yui3-rosetta-stone">GitHub
+    repo</a> and send pull requests.
+  </p>
 </div>
 
 </body>

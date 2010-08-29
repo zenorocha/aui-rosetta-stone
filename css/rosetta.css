@@ -7,23 +7,26 @@ body {
   background: #fff;
   color: #333;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Helvetica Neue", "Helvetica", sans-serif;
-  font-size: 13px;
-  margin: 20px;
+  font-size: 14px;
+  margin: 2em 1.5em 3em;
 }
 
-a { color: #33d; }
+a {
+  color: #33d;
+  text-decoration: none;
+}
 
-code { font-weight: bold; }
+a:hover { text-decoration: underline; }
 
 code, pre {
-  font-family: inconsolata, monofur, profont, menlo, monaco, monospace;
+  font-family: consolas, menlo, 'bitstream vera sans mono', monaco, monospace;
   font-size: 12px;
 }
 
 code, pre, p { line-height: 1.4; }
 
 h1 { margin: 0 0 1em; }
-h2 { margin: 2em 0 0.5em; }
+h2 { margin: 1.5em 0 0.5em; }
 
 h1 { font-size: 24px; }
 h2 { font-size: 20px; }
@@ -62,6 +65,8 @@ th {
   font-weight: normal;
   text-align: left;
 }
+
+.nowrap { white-space: nowrap; }
 
 .jq { color: #900; }
 .yui { color: #009; }
