@@ -585,13 +585,15 @@ hidden = Y.all(hidden);
       <td class="code"><pre class="code jq">$('div:last')</pre></td>
       <td class="code">
 <pre class="code yui">
-var lst = Y.all('div');
-if (lst) {
-    var last = lst.item(lst.size()-1);
+var list = Y.all('div'),
+    last;
+
+if (list.size()) {
+  last = list.item(list.size() - 1);
 }
 </pre>
       </td>
-      <td class="notes">&nbsp;</td>
+      <td class="notes">Extension. Selects the last element matched by the selector.</td>
     </tr>
 
     <tr>
