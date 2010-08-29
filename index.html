@@ -338,14 +338,22 @@ $('&lt;p&gt;foo&lt;p&gt;')
 
     <tr>
       <td class="code">
-        <pre class="code jq">.siblings()</pre>
+<pre class="code jq">
+.siblings()
+.siblings(<i>selector</i>)
+</pre>
       </td>
       <td class="code">
-        <pre class="code yui">.get('parentNode').get('children')</pre>
+<pre class="code yui">
+.siblings()
+.siblings(<i>selector</i>)
+.siblings(<i>function</i>)
+</pre>
       </td>
       <td class="notes">
         <p>
-          Note that the YUI3 code is not equivalent: it will contain all child elements including the caller. YUI3 may add support for <code>.siblings()</code> in a later release.
+          In addition to an optional selector string, YUI3 also supports passing
+          a function to filter the returned siblings.
         <p>
       </td>
     </tr>
