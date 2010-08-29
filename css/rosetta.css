@@ -18,11 +18,9 @@ a {
 
 a:hover { text-decoration: underline; }
 
-code { font-weight: bold; }
-
 code, pre {
-  font-family: inconsolata, monofur, profont, menlo, monaco, monospace;
-  font-size: 13px;
+  font-family: consolas, menlo, 'bitstream vera sans mono', monaco, monospace;
+  font-size: 12px;
 }
 
 code, pre, p { line-height: 1.4; }
@@ -67,6 +65,8 @@ th {
   font-weight: normal;
   text-align: left;
 }
+
+.nowrap { white-space: nowrap; }
 
 .jq { color: #900; }
 .yui { color: #009; }
