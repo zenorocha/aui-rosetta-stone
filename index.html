@@ -460,8 +460,8 @@ Y.all(':enabled')
 
     <tr>
       <td class="code"><pre class="code jq">$(':parent')</pre></td>
-      <td class="code"><pre class="code yui"></pre></td>
-      <td class="notes"><p>Extension. Inverse of <code>:empty</code>. Will find all elements that are a parent of at least one element.</p></td>
+      <td class="code"><pre class="code yui">Y.all(':not(:empty)')</pre></td>
+      <td class="notes"><p>Inverse of <code>:empty</code>. Will find all elements that are a parent of at least one element. jQuery's version is an extension. YUI's is CSS3.</p></td>
     </tr>
 
     <tr>
