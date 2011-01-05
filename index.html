@@ -201,7 +201,8 @@ if (foo.size()) {
 </pre>
       </td>
       <td class="notes">
-        <p><code>.set()</code> is a generic method in YUI for modifying element attributes.<p>
+        <p><code>.set()</code> is a generic method in YUI for modifying element object properties. Use <code>.setAttr()</code> to modify element attributes.<p>
+
         <p><code>.setContent(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
       </td>
     </tr>
@@ -235,12 +236,12 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.get('<i>foo</i>')
-.set('<i>foo</i>', '<i>bar</i>')
+.getAttr('<i>foo</i>')
+.setAttr('<i>foo</i>', '<i>bar</i>')
 </pre>
       </td>
       <td class="notes">
-        <p>Generic attribute getters and setters.</p>
+        <p>Generic HTML attribute getters and setters.</p>
       </td>
     </tr>
 
