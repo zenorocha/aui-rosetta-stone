@@ -300,6 +300,22 @@ if (foo.size()) {
 
     <tr>
       <td class="code">
+        <pre class="code jq"><i>child</i>.appendTo(<i>parent</i>)</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+<i>child</i>.appendTo(<i>parent</i>)
+</pre>
+      </td>
+      <td class="notes">
+        <p>Appends <code>child</code> to <code>parent</code>, and returns <code>child</code>.</p>
+
+        <p><code>.appendTo()</code> was added to YUI in 3.3.0.</code></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
 <pre class="code jq">
 <i>parent</i> = $('&lt;div/&gt;');
 $('&lt;p&gt;foo&lt;p&gt;')
@@ -310,29 +326,13 @@ $('&lt;p&gt;foo&lt;p&gt;')
       <td class="code">
 <pre class="code yui">
 <i>parent</i> = Y.Node.create('&lt;div/&gt;');
-<i>child</i> = Y.Node.create('&lt;p&gt;foo&lt;/p&gt;');
-<i>child</i>.on('click', <i>fn</i>);
-<i>parent</i>.appendChild(<i>child</i>);
+Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
+  .appendTo(<i>parent</i>)
+  .on(&#x27;click&#x27;, <i>fn</i>);
 </pre>
       </td>
       <td class="notes">
-        <p>YUI3 builds element trees outside-in. jQuery can do both outside-in and inside-out (see next entry). YUI3 may add support for <code>.appendTo()</code> in the future.<p>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="code">
-        <pre class="code jq"><i>child</i>.appendTo(<i>parent</i>)</pre>
-      </td>
-      <td class="code">
-<pre class="code yui">
-<i>parent</i>.append(<i>child</i>)
-<i>parent</i>.appendChild(<i>child</i>)
-</pre>
-      </td>
-      <td class="notes">
-        <p>jQuery's <code>.appendTo()</code> returns the child element. YUI3's <code>.appendChild()</code> returns the child element but <code>.append()</code> returns the parent.</p>
-        <p>YUI3's <code>.append()</code> can take either a Node, a bare DOM element, or a string to be converted to HTML.</p>
+        Creates a new <code>div</code> element, then appends a <code>p</code> element with a <code>click</code> event subscription. Note that YUI's <code>on()</code> method is not chainable, so it returns an event handle, not the <code>p</code> node.
       </td>
     </tr>
 
