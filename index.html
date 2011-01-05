@@ -920,18 +920,14 @@ Y.io(<i>url</i>, {
       <td class="code"><pre class="code jq">$('<i>#message</i>').load('<i>/ajax/test.html</i>');</pre></td>
       <td class="code">
 <pre class="code yui">
-var fn = function(txnid, o) {
-    Y.one('<i>#message</i>').setContent(
-        o.responseText
-    );
-}
-Y.io('<i>/ajax/test.html</i>', {
-    on: { success: fn }
-});
+Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>');
+Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 </pre>
       </td>
       <td class="notes">
         <p>Load the content of a given URL and replace the contents of <code>#message</code> with it.</p>
+
+        <p>In YUI, the <code>node-load</code> module provides this functionality. YUI also optionally supports extracting only a portion of the loaded content if a selector string is passed as the second argument (assuming the content is HTML).
       </td>
     </tr>
   </tbody>
