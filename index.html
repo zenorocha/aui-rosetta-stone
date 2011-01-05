@@ -266,10 +266,23 @@ if (foo.size()) {
 .on('blur', <i>fn</i>)
 .on('mouseout', <i>fn</i>)
 .on('mouseover', <i>fn</i>)
+
+<i>// Alternatively, YUI allows you to attach multiple
+// subscribers with a single call.</i>
+.on({
+  click    : <i>fn</i>,
+  focus    : <i>fn</i>,
+  blur     : <i>fn</i>,
+  mouseout : <i>fn</i>,
+  mouseover: <i>fn</i>
+})
+
+<i>// Or attach a single subscriber to multiple events.</i>
+.on(['click', 'focus', 'blur', 'mouseout', 'mouseover'], <i>fn</i>)
 </pre>
       </td>
       <td class="notes">
-        <p><code>.on()</code> is not chainable by default.</p>
+        <p><code>.on()</code> is not chainable by default, but multiple subscribers can be attached in one call using the syntax shown here.</p>
       </td>
     </tr>
 
