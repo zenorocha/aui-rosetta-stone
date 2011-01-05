@@ -38,7 +38,7 @@
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -83,7 +83,7 @@ YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -201,7 +201,8 @@ if (foo.size()) {
 </pre>
       </td>
       <td class="notes">
-        <p><code>.set()</code> is a generic method in YUI for modifying element attributes.<p>
+        <p><code>.set()</code> is a generic method in YUI for modifying element object properties. Use <code>.setAttr()</code> to modify element attributes.<p>
+
         <p><code>.setContent(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
       </td>
     </tr>
@@ -235,12 +236,12 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.get('<i>foo</i>')
-.set('<i>foo</i>', '<i>bar</i>')
+.getAttr('<i>foo</i>')
+.setAttr('<i>foo</i>', '<i>bar</i>')
 </pre>
       </td>
       <td class="notes">
-        <p>Generic attribute getters and setters.</p>
+        <p>Generic HTML attribute getters and setters.</p>
       </td>
     </tr>
 
@@ -255,7 +256,13 @@ if (foo.size()) {
 
 <i>// jQuery 1.4.2 and later allows you to
 // register events when creating the element
-</i>$('&lt;p/&gt;',{text:<i>'foo'</i>, click:<i>fn</i>})
+</i>$('&lt;p/&gt;',{
+  text      :<i>'foo'</i>, 
+  className : <i>'bar'</i>,
+  click     : <i>fn</i>,
+  focus     : <i>fn</i>,
+  blur      : <i>fn</i>
+})
 </pre>
       </td>
       <td class="code">
@@ -265,10 +272,23 @@ if (foo.size()) {
 .on('blur', <i>fn</i>)
 .on('mouseout', <i>fn</i>)
 .on('mouseover', <i>fn</i>)
+
+<i>// Alternatively, YUI allows you to attach multiple
+// subscribers with a single call.</i>
+.on({
+  click    : <i>fn</i>,
+  focus    : <i>fn</i>,
+  blur     : <i>fn</i>,
+  mouseout : <i>fn</i>,
+  mouseover: <i>fn</i>
+})
+
+<i>// Or attach a single subscriber to multiple events.</i>
+.on(['click', 'focus', 'blur', 'mouseout', 'mouseover'], <i>fn</i>)
 </pre>
       </td>
       <td class="notes">
-        <p><code>.on()</code> is not chainable by default.</p>
+        <p><code>.on()</code> is not chainable by default, but multiple subscribers can be attached in one call using the syntax shown here.</p>
       </td>
     </tr>
 
@@ -286,6 +306,22 @@ if (foo.size()) {
 
     <tr>
       <td class="code">
+        <pre class="code jq"><i>child</i>.appendTo(<i>parent</i>)</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+<i>child</i>.appendTo(<i>parent</i>)
+</pre>
+      </td>
+      <td class="notes">
+        <p>Appends <code>child</code> to <code>parent</code>, and returns <code>child</code>.</p>
+
+        <p><code>.appendTo()</code> was added to YUI in 3.3.0.</code></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
 <pre class="code jq">
 <i>parent</i> = $('&lt;div/&gt;');
 $('&lt;p&gt;foo&lt;p&gt;')
@@ -296,29 +332,13 @@ $('&lt;p&gt;foo&lt;p&gt;')
       <td class="code">
 <pre class="code yui">
 <i>parent</i> = Y.Node.create('&lt;div/&gt;');
-<i>child</i> = Y.Node.create('&lt;p&gt;foo&lt;/p&gt;');
-<i>child</i>.on('click', <i>fn</i>);
-<i>parent</i>.appendChild(<i>child</i>);
+Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
+  .appendTo(<i>parent</i>)
+  .on(&#x27;click&#x27;, <i>fn</i>);
 </pre>
       </td>
       <td class="notes">
-        <p>YUI3 builds element trees outside-in. jQuery can do both outside-in and inside-out (see next entry). YUI3 may add support for <code>.appendTo()</code> in the future.<p>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="code">
-        <pre class="code jq"><i>child</i>.appendTo(<i>parent</i>)</pre>
-      </td>
-      <td class="code">
-<pre class="code yui">
-<i>parent</i>.append(<i>child</i>)
-<i>parent</i>.appendChild(<i>child</i>)
-</pre>
-      </td>
-      <td class="notes">
-        <p>jQuery's <code>.appendTo()</code> returns the child element. YUI3's <code>.appendChild()</code> returns the child element but <code>.append()</code> returns the parent.</p>
-        <p>YUI3's <code>.append()</code> can take either a Node, a bare DOM element, or a string to be converted to HTML.</p>
+        Creates a new <code>div</code> element, then appends a <code>p</code> element with a <code>click</code> event subscription. Note that YUI's <code>on()</code> method is not chainable, so it returns an event handle, not the <code>p</code> node.
       </td>
     </tr>
 
@@ -327,12 +347,16 @@ $('&lt;p&gt;foo&lt;p&gt;')
         <pre class="code jq">.empty()</pre>
       </td>
       <td class="code">
-        <pre class="code yui">.get('children').remove(<i>true</i>);</pre>
+        <pre class="code yui">.empty(<i>true</i>)</pre>
       </td>
       <td class="notes">
         <p>
-          jQuery's <code>.empty()</code> also deregisters any events associated with the elements being destroyed. The <code>true</code> argument passed to <code>.remove()</code> enables the same behavior in YUI3.
+          jQuery's <code>.empty()</code> also deregisters any events associated with the elements being destroyed. Passing <code>true</code> to <code>.empty()</code> enables the same behavior in YUI.
         <p>
+
+        <p>
+          <code>.empty()</code> was added to YUI in 3.3.0.
+        </p>
       </td>
     </tr>
 
@@ -367,12 +391,17 @@ $('&lt;p&gt;foo&lt;p&gt;')
       </td>
       <td class="code">
 <pre class="code yui">
-.setStyle('display', <i>null</i>)
-.setStyle('display', 'none')
+.show()
+.hide()
+
+<i>// If the transition module is loaded, a fade transition
+// will be used when true is passed.</i>
+.show(<i>true</i>)
+.hide(<i>true</i>)
 </pre>
       </td>
       <td class="notes">
-        <p>YUI3 does not provide convenience wrappers for show/hide with animations and effects.<p>
+        <p>In YUI, <code>.show()</code> and <code>.hide()</code> can be customized to use transitions supported by the <code>transition</code> module. These methods were added to YUI in 3.3.0.<p>
       </td>
     </tr>
   </tbody>
@@ -384,7 +413,7 @@ $('&lt;p&gt;foo&lt;p&gt;')
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -652,7 +681,7 @@ if (list.size()) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -708,24 +737,14 @@ $('#.foo').hide(600);
 </pre></td>
       <td class="code">
 <pre class="code yui">
-var a = new Y.Anim(
-  {
-    node: '<i>#foo</i>',
-    to: {opacity:  <i>0.0</i>},
-    duration: <i>0.2</i>,
-    easing:   Y.Easing.easeOut
-  }
-);
-a.on('end', function(ev) {
-    ev.target._node
-      .setStyle('display', 'none');
-});
-a.run();
+Y.one('#foo').hide(<i>true</i>)
 </pre>
       </td>
       <td class="notes">
-        <p><code>.fadeOut()</code> fades the opacity to 0, then sets <code>display:none</code> on the element. <code>fadeIn()</code> is naturally the inverse. Note that jQuery effects tend to default to 200 or 600ms while YUI defaults to 1,000ms. YUI durations are in fractions of seconds; jQuery durations are set in milliseconds.</p>
-        <p>YUI Anim objects have events you can attach functions to, but you have to poke the private <code>_node</code> property to retrieve the element being animated.</p>
+        <p>jQuery's <code>.fadeOut()</code> fades the opacity to 0, then sets <code>display:none</code> on the element. <code>.fadeIn()</code> is naturally the inverse. The YUI equivalents are <code>.hide(<i>true</i>)</code> and <code>.show(<i>true</i>)</code> (note that the <code>transition</code> module must be loaded in order to get the fade effect).</p>
+
+        <p>
+          jQuery effects tend to default to 200 or 600ms while YUI's show/hide transitions default to 500ms. YUI durations are in fractions of seconds; jQuery durations are set in milliseconds.</p>
       </td>
     </tr>
   </tbody>
@@ -737,7 +756,7 @@ a.run();
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -858,7 +877,7 @@ mapped = Y.all(mapped);
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -907,18 +926,14 @@ Y.io(<i>url</i>, {
       <td class="code"><pre class="code jq">$('<i>#message</i>').load('<i>/ajax/test.html</i>');</pre></td>
       <td class="code">
 <pre class="code yui">
-var fn = function(txnid, o) {
-    Y.one('<i>#message</i>').setContent(
-        o.responseText
-    );
-}
-Y.io('<i>/ajax/test.html</i>', {
-    on: { success: fn }
-});
+Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>');
+Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 </pre>
       </td>
       <td class="notes">
         <p>Load the content of a given URL and replace the contents of <code>#message</code> with it.</p>
+
+        <p>In YUI, the <code>node-load</code> module provides this functionality. YUI also optionally supports extracting only a portion of the loaded content if a selector string is passed as the second argument (assuming the content is HTML).
       </td>
     </tr>
   </tbody>
@@ -930,7 +945,7 @@ Y.io('<i>/ajax/test.html</i>', {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1044,7 +1059,11 @@ Y.io('<i>/ajax/test.html</i>', {
 <i>// [123, 456]</i>
 </pre>
       </td>
-      <td class="notes"><p>Get the computed x,y coordinates. The coordinates are relative to the nearest ancestor element that is relatively or absolutely positioned.</p></td>
+      <td class="notes">
+        <p>Get the computed x,y coordinates.</p>
+
+        <p>In jQuery, the coordinates are relative to the nearest ancestor element that is relatively or absolutely positioned. In YUI, they're relative to the document.</p>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -1057,7 +1076,7 @@ Y.io('<i>/ajax/test.html</i>', {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.1.2</th>
+      <th class="yui">YUI 3.3.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
