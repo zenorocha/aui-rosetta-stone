@@ -1053,7 +1053,11 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 <i>// [123, 456]</i>
 </pre>
       </td>
-      <td class="notes"><p>Get the computed x,y coordinates. The coordinates are relative to the nearest ancestor element that is relatively or absolutely positioned.</p></td>
+      <td class="notes">
+        <p>Get the computed x,y coordinates.</p>
+
+        <p>In jQuery, the coordinates are relative to the nearest ancestor element that is relatively or absolutely positioned. In YUI, they're relative to the document.</p>
+      </td>
     </tr>
   </tbody>
 </table>
