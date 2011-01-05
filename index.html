@@ -341,12 +341,16 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <pre class="code jq">.empty()</pre>
       </td>
       <td class="code">
-        <pre class="code yui">.get('children').remove(<i>true</i>);</pre>
+        <pre class="code yui">.empty(<i>true</i>)</pre>
       </td>
       <td class="notes">
         <p>
-          jQuery's <code>.empty()</code> also deregisters any events associated with the elements being destroyed. The <code>true</code> argument passed to <code>.remove()</code> enables the same behavior in YUI3.
+          jQuery's <code>.empty()</code> also deregisters any events associated with the elements being destroyed. Passing <code>true</code> to <code>.empty()</code> enables the same behavior in YUI.
         <p>
+
+        <p>
+          <code>.empty()</code> was added to YUI in 3.3.0.
+        </p>
       </td>
     </tr>
 
