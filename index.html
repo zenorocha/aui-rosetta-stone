@@ -545,11 +545,11 @@ $('div').slice(0,<i>n</i>);
       </td>
       <td class="code">
 <pre class="code yui">
-Y.all(Y.all('div')._nodes.slice(<i>n + 1</i>));
-Y.all(Y.all('div')._nodes.slice(0,<i>n</i>));
+Y.all('div').slice(<i>n + 1</i>);
+Y.all('div').slice(0, <i>n</i>);
 </pre>
       </td>
-      <td class="notes"><p>Extension. <code>:gt</code> (greater than) selects all elements from index <code>n+1</code> onwards. <code>:lt</code> (less than) selects all nodes from 0 up to <code>n-1</code>. Note that in the YUI3 example we have to access the private <code>_nodes</code> array and perform a <code>slice()</code>. <code>NodeList.slice()</code> and friends may be added in an upcoming point release. The double call to <code>Y.all()</code> is explained in <a href="#nodelist">Array vs. NodeList</a>.</p></td>
+      <td class="notes"><p>Extension. <code>:gt</code> (greater than) selects all elements from index <code>n+1</code> onwards. <code>:lt</code> (less than) selects all nodes from 0 up to <code>n-1</code>.
     </tr>
 
     <tr>
@@ -776,28 +776,26 @@ Y.one('#foo').hide(<i>true</i>)
   <tbody>
     <tr>
       <td class="code"><pre class="code jq">$('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
-      <td class="code"><pre class="code yui">Y.all(Y.all('<i>.foo</i>')._nodes.<i>array_method</i>(<i>args</i>))</pre></td>
-      <td class="notes"><p>Any Array operation that you can perform on a jQuery list can be translated to YUI in this form. YUI NodeList objects are not native Arrays, but the private <code>_nodes</code> property is. However, calling list operations like <code>.concat()</code> on <code>._nodes</code> results in an array of DOM elements, not a NodeList. To generate a new NodeList for the new array, you have wrap it in a call to <code>Y.all()</code>.</p></td>
+      <td class="code"><pre class="code yui">Y.all('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
+      <td class="notes"><p>Any Array operation that you can perform on a jQuery list can be translated to YUI in this form. YUI NodeList objects are not native Arrays, but do provide wrapper functions for the most common array methods as of 3.3.0.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$('div').slice(<i>x</i>, <i>y</i>)</pre></td>
-      <td class="code"><pre class="code yui">Y.all(Y.all('div')._nodes.slice(<i>x</i>, <i>y</i>))</pre></td>
+      <td class="code"><pre class="code yui">Y.all('div').slice(<i>x</i>, <i>y</i>)</pre></td>
       <td class="notes"><p>Return the <i>xth</i> to the <i>yth</i> div elements.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$('div').add('p')</pre></td>
       <td class="code">
-<pre class="code yui">
-Y.all(
-    Y.all('div')._nodes.concat(
-        Y.all('p')._nodes
-    )
-)
-</pre>
+<pre class="code yui">Y.all('div').concat(Y.all('p'));</pre>
       </td>
-      <td class="notes"><p><code>NodeList.concat()</code> and friends are coming to a point release of YUI.</p></td>
+      <td class="notes">
+        <p>
+        Add nodes that match the specified selector.
+        </p>
+      </td>
     </tr>
 
     <tr>
