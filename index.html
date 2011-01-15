@@ -813,8 +813,8 @@ $('<i>.foo</i>').each(
       <td class="code">
 <pre class="code yui">
 Y.all('<i>.foo</i>').each(
-  function(node, idx, lst) {
-    node.<i>some_method();</i>
+  function() {
+    this.<i>some_method();</i>
   }
 );
 </pre>
