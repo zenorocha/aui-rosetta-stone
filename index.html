@@ -843,7 +843,7 @@ var filtered = [];
 Y.all('<i>.foo</i>').each(
   function(node) {
     if (node.get('<i>property</i>') === '<i>value</i>') {
-      filtered.push(node._node);
+      filtered.push(node);
     }
   }
 );
