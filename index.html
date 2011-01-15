@@ -554,7 +554,19 @@ Y.all(Y.all('div')._nodes.slice(0,<i>n</i>));
 
     <tr>
       <td class="code"><pre class="code jq">$('div:has(p)')</pre></td>
-      <td class="code"><pre class="code yui"></pre></td>
+      <td class="code">
+<pre class="code yui">
+var nodes = [];
+
+Y.all('div').each(function (node) {
+  if (node.one('p')) {
+    nodes.push(node);
+  }
+});
+
+nodes = Y.all(nodes);
+</pre>
+      </td>
       <td class="notes"><p>Extension. Selects elements which contain at least one element that matches the specified selector. In this example, all <code>div</code> tags which have a <code>p</code> tag descendent will be selected.</p></td>
     </tr>
 
