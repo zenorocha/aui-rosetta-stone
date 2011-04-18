@@ -1025,7 +1025,11 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 .width()
 </pre>
       </td>
-      <td class="code"><pre class="code yui">???</pre></td>
+      <td class="code">
+<pre class="code yui">
+.getComputedStyle('height')
+.getComputedStyle('width')
+</pre></td>
       <td class="notes"><p>Computed height / width. Excludes padding and borders.</p></td>
     </tr>
 
@@ -1036,7 +1040,11 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 .innerWidth()
 </pre>
       </td>
-      <td class="code"><pre class="code yui">???</pre></td>
+      <td class="code">
+<pre class="code yui">
+.get('clientHeight')
+.get('clientWidth')
+</pre></td>
       <td class="notes"><p>Includes padding but not border</p></td>
     </tr>
 
