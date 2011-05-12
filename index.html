@@ -404,6 +404,33 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <p>In YUI, <code>.show()</code> and <code>.hide()</code> can be customized to use transitions supported by the <code>transition</code> module. These methods were added to YUI in 3.3.0.<p>
       </td>
     </tr>
+    
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$.parseJSON( '{"name":"Douglas"}' )
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.JSON.parse( '{"name":"Douglas"}' )
+</pre>
+      </td>
+      <td class="notes"><p>Converts a JSON string into an object.</p></td>
+    </tr>
+    
+    <tr>
+      <td class="code">
+<pre class="code jq"></pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.JSON.stringify({name: "Douglas"});
+</pre>
+      </td>
+      <td class="notes"><p>Converts an object to a JSON string. No jQuery equivalent.</p></td></p></td>
+    </tr>
+    
   </tbody>
 </table>
 
