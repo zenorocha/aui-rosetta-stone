@@ -294,6 +294,18 @@ if (foo.size()) {
 
     <tr>
       <td class="code">
+        <pre class="code jq">$('#foo').trigger('click');</pre>
+      </td>
+      <td class="code">
+        <pre class="code yui">Y.one("#foo").simulate("click")</pre>
+      </td>
+      <td class="notes">
+        <p>Simulates a click event.  In YUI3, you'll need the <i>node-event-simulate</i> module.<p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
         <pre class="code jq"><i>parent</i>.append('&lt;div/&gt;')</pre>
       </td>
       <td class="code">
