@@ -381,7 +381,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <p>
       </td>
     </tr>
-
+    
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -393,9 +393,20 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
 <pre class="code yui">
 .show()
 .hide()
+</pre>
+      </td>
+      <td class="notes">Make DOM nodes appear/disappear</td>
+    </tr>
 
-<i>// If the transition module is loaded, a fade transition
-// will be used when true is passed.</i>
+    <tr>
+      <td class="code">
+<pre class="code jq">
+.fadeIn()
+.faceOut()
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
 .show(<i>true</i>)
 .hide(<i>true</i>)
 </pre>
