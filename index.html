@@ -1348,10 +1348,14 @@ Y.Object.each({ key: value }, <i>fn(key, value)</i>)
 
     <tr>
       <td class="code"><pre class="code jq">$.isPlainObject(<i>obj</i>)</pre></td>
-      <td class="code"><pre class="code yui">Y.Lang.isObject(<i>obj</i>, true)</pre></td>
+      <td class="code">
+<pre class="code yui">
+Y.Lang.isObject(<i>obj</i>)
+Y.Lang.isObject(<i>obj</i>, <i>true</i>)
+</pre></td>
       <td class="notes">
         <p>
-        	In YUI, <code>Y.Lang.isObject(function(){})</code> returns true. To check if an object is a plain object, pass <code>true</code> as a second parameter.
+        	In YUI, <code>Y.Lang.isObject</code> returns true for arrays and functions. Passing true as a second parameter makes it return false if the input is a function.
         </p>
       </td>
     </tr>
@@ -1398,7 +1402,7 @@ Y.Lang.isValue(<i>obj</i>)
       <td class="code"><pre class="code yui">Y.Array(<i>obj</i>)</pre></td>
       <td class="notes">
         <p>
-        	Make an array like object, for instance the return value of <code>document.getElementsByTagName</code>, into a true array.
+        	Make an array-like object, for instance the return value of <code>document.getElementsByTagName</code>, into a true array.
         </p>
       </td>
     </tr>
