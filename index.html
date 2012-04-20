@@ -372,6 +372,37 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
 
     <tr>
       <td class="code">
+<pre class="code jq">
+<i>// Removes #foo from its parent and
+// detaches events and jQuery data.</i>
+$('#foo').remove()
+
+<i>// Removes #foo from #container.</i>
+$('#container').remove('#foo')
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+<i>// Removes #foo from its parent, but doesn't
+// detach events or YUI plugins.</i>
+Y.one('#foo').remove()
+
+<i>// Removes #foo and detaches events and plugins.</i>
+Y.one('#foo').remove(<i>true</i>)
+
+<i>// Removes #foo from #container.</i>
+Y.one('#container').removeChild(Y.one('#foo'))
+</pre>
+      </td>
+      <td class="notes">
+        <p>
+          jQuery's <code>.remove()</code> purges events and jQuery data from the removed node. For the equivalent behavior in YUI, use <code>.remove(<i>true</i>)</code>.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
         <pre class="code jq">.empty()</pre>
       </td>
       <td class="code">
