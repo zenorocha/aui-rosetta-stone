@@ -38,7 +38,7 @@
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -83,7 +83,7 @@ YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -195,7 +195,7 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.setContent('<i>foo</i>')
+.setHTML('<i>foo</i>')
 .set('text', '<i>foo</i>')
 .set('value', '<i>foo</i>')
 </pre>
@@ -203,7 +203,7 @@ if (foo.size()) {
       <td class="notes">
         <p><code>.set()</code> is a generic method in YUI for modifying element object properties. Use <code>.setAttr()</code> to modify element attributes.<p>
 
-        <p><code>.setContent(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
+        <p><code>.setHTML(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
       </td>
     </tr>
 
@@ -217,7 +217,7 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.get('innerHTML')
+.getHTML()
 .get('text')
 .get('value')
 </pre>
@@ -248,12 +248,12 @@ if (foo.size()) {
     <tr>
       <td class="code">
 <pre class="code jq">
-$.trim('<i> foo </i>');
+$.trim('<i> foo </i>')
 </pre>
       </td>
       <td class="code">
 <pre class="code yui">
-Y.Lang.trim('<i> foo </i>');
+Y.Lang.trim('<i> foo </i>')
 </pre>
       </td>
       <td class="notes">
@@ -310,10 +310,10 @@ Y.Lang.trim('<i> foo </i>');
 
     <tr>
       <td class="code">
-        <pre class="code jq">$('#foo').trigger('click');</pre>
+        <pre class="code jq">$('#foo').trigger('click')</pre>
       </td>
       <td class="code">
-        <pre class="code yui">Y.one("#foo").simulate("click")</pre>
+        <pre class="code yui">Y.one('#foo').simulate('click')</pre>
       </td>
       <td class="notes">
         <p>Simulates a click event.  In YUI, you'll need the <i>node-event-simulate</i> module.<p>
@@ -367,6 +367,37 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
       </td>
       <td class="notes">
         Creates a new <code>div</code> element, then appends a <code>p</code> element with a <code>click</code> event subscription. Note that YUI's <code>on()</code> method is not chainable, so it returns an event handle, not the <code>p</code> node.
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+<i>// Removes #foo from its parent and
+// detaches events and jQuery data.</i>
+$('#foo').remove()
+
+<i>// Removes #foo from #container.</i>
+$('#container').remove('#foo')
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+<i>// Removes #foo from its parent, but doesn't
+// detach events or YUI plugins.</i>
+Y.one('#foo').remove()
+
+<i>// Removes #foo and detaches events and plugins.</i>
+Y.one('#foo').remove(<i>true</i>)
+
+<i>// Removes #foo from #container.</i>
+Y.one('#container').removeChild(Y.one('#foo'))
+</pre>
+      </td>
+      <td class="notes">
+        <p>
+          jQuery's <code>.remove()</code> purges events and jQuery data from the removed node. For the equivalent behavior in YUI, use <code>.remove(<i>true</i>)</code>.
+        </p>
       </td>
     </tr>
 
@@ -554,7 +585,7 @@ $.parseJSON( '{"name":"Douglas"}' )
 Y.JSON.parse( '{"name":"Douglas"}' )
 </pre>
       </td>
-      <td class="notes"><p>Converts a JSON string into an object.</p></td>
+      <td class="notes"><p>Converts a JSON string into an object. Requires the <code>json-parse</code> module.</p></td>
     </tr>
 
     <tr>
@@ -563,10 +594,10 @@ Y.JSON.parse( '{"name":"Douglas"}' )
       </td>
       <td class="code">
 <pre class="code yui">
-Y.JSON.stringify({name: "Douglas"});
+Y.JSON.stringify({name: "Douglas"})
 </pre>
       </td>
-      <td class="notes"><p>Converts an object to a JSON string. No jQuery equivalent.</p></td></p></td>
+      <td class="notes"><p>Converts an object to a JSON string. Requires the <code>json-stringify</code> module. No jQuery equivalent.</p></td></p></td>
     </tr>
 
     <tr>
@@ -595,7 +626,7 @@ Y.bind(<i>fn</i>, <i>context</i>)
 .setData(<i>key</i>, <i>value</i>)
 </pre>
       </td>
-      <td class="notes"><p>Stores data associated to a DOM element without modifying the DOM.</p></td>
+      <td class="notes"><p>Stores data associated with a DOM element without modifying the DOM.</p></td>
     </tr>
 
     <tr>
@@ -623,7 +654,7 @@ Y.bind(<i>fn</i>, <i>context</i>)
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -837,10 +868,11 @@ hidden = Y.all(hidden);
       <td class="code">
 <pre class="code yui">
 var list = Y.all('div'),
+    len  = list.size(),
     last;
 
-if (list.size()) {
-  last = list.item(list.size() - 1);
+if (len) {
+  last = list.item(len - 1);
 }
 </pre>
       </td>
@@ -903,7 +935,7 @@ if (list.size()) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -978,7 +1010,7 @@ Y.one('#foo').hide(<i>true</i>)
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -999,7 +1031,7 @@ Y.one('#foo').hide(<i>true</i>)
     <tr>
       <td class="code"><pre class="code jq">$('div').add('p')</pre></td>
       <td class="code">
-<pre class="code yui">Y.all('div').concat(Y.all('p'));</pre>
+<pre class="code yui">Y.all('div').concat(Y.all('p'))</pre>
       </td>
       <td class="notes">
         <p>
@@ -1013,7 +1045,7 @@ Y.one('#foo').hide(<i>true</i>)
 <pre class="code jq">
 $('<i>.foo</i>').each(
   function() {
-    this.<i>some_method();</i>
+    $(this).<i>some_method();</i>
   }
 );
 </pre>
@@ -1039,26 +1071,19 @@ Y.all('<i>.foo</i>').each(
     <tr>
       <td class="code">
 <pre class="code jq">
-var fn = function(idx) {
-    return this.<i>property</i> === '<i>value</i>';
-};
-$('<i>.foo</i>').filter(fn);
+$('<i>.foo</i>').filter(function (idx) {
+  return this.<i>property</i> === '<i>value</i>';
+});
 </pre>
       </td>
       <td class="code">
 <pre class="code yui">
-var filtered = [];
-Y.all('<i>.foo</i>').each(
-  function(node) {
-    if (node.get('<i>property</i>') === '<i>value</i>') {
-      filtered.push(node);
-    }
-  }
-);
-filtered = Y.all(filtered);
+Y.all('<i>.foo</i>').filter(function (node) {
+  return node.get('<i>property</i>') === '<i>value</i>';
+});
 </pre>
       </td>
-      <td class="notes"><p>Classic functional programming filter function. Given a list of elements, run the function on each and return a list of those which evaluated true. <code>NodeList.filter(fn)</code> is coming to a future point release of YUI.</p></td>
+      <td class="notes"><p>Classic functional programming filter function. Given a list of elements, run the function on each and return a list of those which evaluated true.</p></td>
     </tr>
 
     <tr>
@@ -1075,17 +1100,15 @@ $('<i>.foo</i>').map(
 <pre class="code yui">
 var mapped = [];
 Y.all('<i>.foo</i>').each(
-  function(node) {
-    mapped.push(
-      return some_function(node)
-    );
+  function (node) {
+    mapped.push(some_function(node));
   }
 );
 mapped = Y.all(mapped);
 </pre>
       </td>
       <td class="notes">
-        <p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function. <code>NodeList.map(fn)</code> is coming to a future point release of YUI.</p>
+        <p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function.</p>
       </td>
     </tr>
   </tbody>
@@ -1097,7 +1120,7 @@ mapped = Y.all(mapped);
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1165,7 +1188,7 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1316,7 +1339,7 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.3</th>
-      <th class="yui">YUI 3.4.1</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1331,7 +1354,7 @@ $.each({ key: value }, <i>fn(key, value)</i>)
       <td class="code">
 <pre class="code yui">
 Y.Array.each([1, 2, 3], <i>fn(value, index)</i>)
-Y.Object.each({ key: value }, <i>fn(key, value)</i>)
+Y.Object.each({ key: value }, <i>fn(value, key)</i>)
 </pre></td>
       <td class="notes">
         <p>
