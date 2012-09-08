@@ -63,7 +63,7 @@
       </td>
       <td class="code">
 <pre class="code yui">
-&lt;script src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"&gt;&lt;/script&gt;
+&lt;script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"&gt;&lt;/script&gt;
 
 
 
@@ -85,6 +85,8 @@
     // example code here
   });
 </pre>
+
+<p>If any additional modules are needed, they'll be specified in the "notes" section to the example.</p>
       </td>
     </tr>
   </tbody>
@@ -725,7 +727,7 @@ Y.one('#foo').simulate('click')
 </pre>
       </td>
       <td class="notes">
-        <p>Simulates a <em>click</em> event. In YUI, you'll need the <i>node-event-simulate</i> module.</p>
+        <p>Simulates a <em>click</em> event. In YUI, you'll need the <code>node-event-simulate</code> module.</p>
       </td>
     </tr>
   </tbody>
@@ -1062,7 +1064,7 @@ a.run();
       </td>
       <td class="notes">
         <p>The basic syntax and capabilities of both animation libraries are very similar. jQuery has convenience methods for effects like <code>.fadeIn()</code>, <code>.slideUp()</code>, etc. jQuery core has two easing functions: 'linear' and 'swing', but jQuery UI comes with <a href="http://jqueryui.com/demos/effect/">many more effects</a> as plugins.</p>
-        <p>YUI has several <a href="http://yuilibrary.com/yui/docs/api/classes/Easing.html">easing algorithms</a> built-in, and offers additional tools such as <a href="http://yuilibrary.com/yui/docs/anim/curve.html">animations over Bezier curves</a>. Make sure to load the <code>'anim'</code> module in your call to <code>YUI().use()</code>.</p>
+        <p>YUI has several <a href="http://yuilibrary.com/yui/docs/api/classes/Easing.html">easing algorithms</a> built-in, and offers additional tools such as <a href="http://yuilibrary.com/yui/docs/anim/curve.html">animations over Bezier curves</a>. Requires the <code>anim</code> module.</p>
       </td>
     </tr>
 
@@ -1231,7 +1233,7 @@ Y.io(<i>url</i>, {
 </pre>
       </td>
       <td class="notes">
-        <p><a href="http://yuilibrary.com/yui/docs/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>'io'</code> module.</p>
+        <p><a href="http://yuilibrary.com/yui/docs/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>io</code> module.</p>
       </td>
     </tr>
 
@@ -1296,7 +1298,6 @@ $.getJSON(
 </td>
       <td class="code">
 <pre class="code yui">
-<i>// (module: jsonp)</i>
 Y.jsonp(
   "/some/jsonpURL.json?callback={callback}", 
   <i>successFn</i>
@@ -1304,7 +1305,7 @@ Y.jsonp(
 </pre>
       </td>
       <td class="notes">
-        <p>JSONP requests. Same-origin policy is not enforced.</p>
+        <p>JSONP requests. Same-origin policy is not enforced.  Requires the <code>jsonp</code> module.</p>
       </td>
     </tr>
   </tbody>
