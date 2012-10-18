@@ -2,12 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>jQuery - YUI3 Rosetta Stone</title>
+  <title>jQuery - YUI 3 Rosetta Stone</title>
   <link rel="stylesheet" type="text/css" href="css/rosetta.css">
 </head>
 <body>
 
-<h1>jQuery - YUI3 Rosetta Stone</h1>
+<h1>jQuery - YUI 3 Rosetta Stone</h1>
 
 <p class="printonly">
   <a href="http://www.jsrosettastone.com/">www.jsrosettastone.com</a>
@@ -16,6 +16,7 @@
 <ul class="toc">
   <li><a href="#start">Getting Started</a></li>
   <li><a href="#common">Common Idioms</a></li>
+  <li><a href="#events">Events</a></li>
   <li><a href="#selectors">Selectors</a></li>
   <li><a href="#effects">Animations &amp; Effects</a></li>
   <li>
@@ -33,45 +34,59 @@
 </ul>
 
 <h2 id="start">Getting Started</h2>
-
 <table>
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
-      <th class="notes">Notes</th>
+      <th class="yui">YUI 3.5.0</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td class="code">
-        <pre class="code jq">$<i>.foo.bar()</i></pre>
+<pre class="code jq">
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://somedomain.com/path/to/plugin.js"&gt;&lt;/script&gt;
+&lt;script src="https://somedomain.com/path/to/anotherplugin.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  $(document).ready(function() {
+    // Do stuff with the $ object here
+    $<i>.foo.bar()</i>
+  });
+&lt;/script&gt;
+</pre>
+        <p><strong>Loading Method</strong>: Statically loaded (by default).</p>
+        <p><strong>Scope</strong>: The <code>jQuery</code>/<code>$</code> objects are global.</p>
+        <p><strong>Plugins</strong>: To go beyond base library functionality, jQuery has the concept of "plugins" which are loaded in via additional <code>&lt;script&gt;</code> tags, or a dynamic loader.  All examples on this page use core library methods (no plugins).<p>
       </td>
       <td class="code">
 <pre class="code yui">
-YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
-  Y<i>.foo.bar()</i>
-});
+&lt;script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"&gt;&lt;/script&gt;
+
+
+
+&lt;script&gt;
+  YUI().use('<i>module1</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
+    // Do stuff with the Y object here
+    Y<i>.foo.bar()</i>
+  });
+&lt;/script&gt;
 </pre>
-      </td>
-      <td class="notes">
-        <p>The <code>jQuery</code> and <code>$</code> objects are globals and the jQuery library itself is statically loaded, so they are available immediately.</p>
 
-        <p>
-          YUI is sandboxed and by default dynamically loaded. The
-          <code>Y</code> object is local to the function you pass as the last
-          argument to <code>YUI().use()</code>. Usually you will put all code
-          that uses YUI inside one of these functions. This function executes
-          <b>after</b> all the referenced modules are loaded and accounted for.
-        </p>
+<p><strong>Loading Method</strong>: Dynamically loaded (by default).</p>
 
-        <p>
-          The return value of <code>YUI().use()</code> is also a Y object, which
-          you can assign to a global variable [e.g.
-          <code class="nowrap">var Y = YUI().use(&hellip;);</code>] and debug
-          with it in a JavaScript console.
-        </p>
+<p><strong>Scope</strong>: The <code>YUI</code> loader object is global, and the <code>Y</code> object is local to each "sandbox" (your callback function). However, the return value of <code>YUI().use()</code> is a <code>Y</code> object, which you can assign to a global variable [e.g. <code class="nowrap">var Y = YUI().use(&hellip;);</code>].</p>
+
+<p><strong>Modules</strong>: Functionality in the YUI library is provided by "modules", which are split between <a href="http://yuilibrary.com/yui/docs/guides/">core</a> (officially supported) and <a href="http://yuilibrary.com/gallery/show">gallery</a> (user contributed). Simply adding <code>YUI().use(function(Y){});</code> doesn't get you much, so you will need to specify which modules you wish to use and the loader will fetch them for you.  The following core modules should provide you all the functionality for the examples in this document: </p>
+<pre>
+  YUI().use('node', 'io', 'event', 'animation', function (Y) {
+    // example code here
+  });
+</pre>
+
+<p>If any additional modules are needed, they'll be specified in the "notes" section to the example.</p>
       </td>
     </tr>
   </tbody>
@@ -83,7 +98,7 @@ YUI().use('<i>node</i>', '<i>module2</i>', '<i>module3</i>', function (Y) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -195,15 +210,15 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.setContent('<i>foo</i>')
+.setHTML('<i>foo</i>')
 .set('text', '<i>foo</i>')
 .set('value', '<i>foo</i>')
 </pre>
       </td>
       <td class="notes">
-        <p><code>.set()</code> is a generic method in YUI for modifying element object properties. Use <code>.setAttr()</code> to modify element attributes.<p>
+        <p><code>.set()</code> is a generic method in YUI for modifying element object properties. Use <code>.setAttribute()</code> to modify element attributes.<p>
 
-        <p><code>.setContent(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
+        <p><code>.setHTML(<i>html</i>)</code> is a convenience wrapper around <code>.set('innerHTML', <i>html</i>)</code><p>
       </td>
     </tr>
 
@@ -217,7 +232,7 @@ if (foo.size()) {
       </td>
       <td class="code">
 <pre class="code yui">
-.get('innerHTML')
+.getHTML()
 .get('text')
 .get('value')
 </pre>
@@ -248,12 +263,12 @@ if (foo.size()) {
     <tr>
       <td class="code">
 <pre class="code jq">
-$.trim('<i> foo </i>');
+$.trim('<i> foo </i>')
 </pre>
       </td>
       <td class="code">
 <pre class="code yui">
-Y.Lang.trim('<i> foo </i>');
+Y.Lang.trim('<i> foo </i>')
 </pre>
       </td>
       <td class="notes">
@@ -273,7 +288,7 @@ Y.Lang.trim('<i> foo </i>');
 <i>// jQuery 1.4.2 and later allows you to
 // register events when creating the element
 </i>$('&lt;p/&gt;',{
-  text      :<i>'foo'</i>, 
+  text      :<i>'foo'</i>,
   className : <i>'bar'</i>,
   click     : <i>fn</i>,
   focus     : <i>fn</i>,
@@ -281,45 +296,6 @@ Y.Lang.trim('<i> foo </i>');
 })
 </pre>
       </td>
-      <td class="code">
-<pre class="code yui">
-.on('click', <i>fn</i>)
-.on('focus', <i>fn</i>)
-.on('blur', <i>fn</i>)
-.on('mouseout', <i>fn</i>)
-.on('mouseover', <i>fn</i>)
-
-<i>// Alternatively, YUI allows you to attach multiple
-// subscribers with a single call.</i>
-.on({
-  click    : <i>fn</i>,
-  focus    : <i>fn</i>,
-  blur     : <i>fn</i>,
-  mouseout : <i>fn</i>,
-  mouseover: <i>fn</i>
-})
-
-<i>// Or attach a single subscriber to multiple events.</i>
-.on(['click', 'focus', 'blur', 'mouseout', 'mouseover'], <i>fn</i>)
-</pre>
-      </td>
-      <td class="notes">
-        <p><code>.on()</code> is not chainable by default, but multiple subscribers can be attached in one call using the syntax shown here.</p>
-      </td>
-    </tr>
-
-    <tr>
-      <td class="code">
-        <pre class="code jq">$('#foo').trigger('click');</pre>
-      </td>
-      <td class="code">
-        <pre class="code yui">Y.one("#foo").simulate("click")</pre>
-      </td>
-      <td class="notes">
-        <p>Simulates a click event.  In YUI, you'll need the <i>node-event-simulate</i> module.<p>
-      </td>
-    </tr>
-
     <tr>
       <td class="code">
         <pre class="code jq"><i>parent</i>.append('&lt;div/&gt;')</pre>
@@ -360,13 +336,44 @@ $('&lt;p&gt;foo&lt;p&gt;')
       <td class="code">
 <pre class="code yui">
 <i>parent</i> = Y.Node.create('&lt;div/&gt;');
-Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
+Y.Node.create('&lt;p&gt;foo&lt;/p&gt;')
   .appendTo(<i>parent</i>)
-  .on(&#x27;click&#x27;, <i>fn</i>);
+  .on('click', <i>fn</i>);
 </pre>
       </td>
       <td class="notes">
         Creates a new <code>div</code> element, then appends a <code>p</code> element with a <code>click</code> event subscription. Note that YUI's <code>on()</code> method is not chainable, so it returns an event handle, not the <code>p</code> node.
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+<i>// Removes #foo from its parent and
+// detaches events and jQuery data.</i>
+$('#foo').remove()
+
+<i>// Removes #foo from #container.</i>
+$('#container').remove('#foo')
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+<i>// Removes #foo from its parent, but doesn't
+// detach events or YUI plugins.</i>
+Y.one('#foo').remove()
+
+<i>// Removes #foo and detaches events and plugins.</i>
+Y.one('#foo').remove(<i>true</i>)
+
+<i>// Removes #foo from #container.</i>
+Y.one('#container').removeChild(Y.one('#foo'))
+</pre>
+      </td>
+      <td class="notes">
+        <p>
+          jQuery's <code>.remove()</code> purges events and jQuery data from the removed node. For the equivalent behavior in YUI, use <code>.remove(<i>true</i>)</code>.
+        </p>
       </td>
     </tr>
 
@@ -409,7 +416,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <p>
       </td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -430,7 +437,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <p>
       </td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -451,7 +458,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
         <p>
       </td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -465,7 +472,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
       </td>
       <td class="notes"><p>Returns the parent node of the given node.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -479,7 +486,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
       </td>
       <td class="notes"><p>Returns all the element children of the given node.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -494,7 +501,7 @@ Y.Node.create(&#x27;&lt;p&gt;foo&lt;/p&gt;&#x27;)
       </td>
       <td class="notes"><p>Returns the first ancestor that matches the given selector. In addition, YUI supports using a function instead of a selector to find an ancestor.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -508,7 +515,7 @@ $.contains(<i>node</i>, <i>descendant</i>)
       </td>
       <td class="notes"><p>Check to see if a node contains a certain descendant.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -542,7 +549,7 @@ $.contains(<i>node</i>, <i>descendant</i>)
         <p>In YUI, <code>.show()</code> and <code>.hide()</code> can be customized to use transitions supported by the <code>transition</code> module. These methods were added to YUI in 3.3.0.<p>
       </td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -554,21 +561,21 @@ $.parseJSON( '{"name":"Douglas"}' )
 Y.JSON.parse( '{"name":"Douglas"}' )
 </pre>
       </td>
-      <td class="notes"><p>Converts a JSON string into an object.</p></td>
+      <td class="notes"><p>Converts a JSON string into an object. Requires the <code>json-parse</code> module.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq"></pre>
       </td>
       <td class="code">
 <pre class="code yui">
-Y.JSON.stringify({name: "Douglas"});
+Y.JSON.stringify({name: "Douglas"})
 </pre>
       </td>
-      <td class="notes"><p>Converts an object to a JSON string. No jQuery equivalent.</p></td></p></td>
+      <td class="notes"><p>Converts an object to a JSON string. Requires the <code>json-stringify</code> module. No jQuery equivalent.</p></td></p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">$.proxy(<i>fn</i>, <i>context</i>)
@@ -581,7 +588,7 @@ Y.bind(<i>fn</i>, <i>context</i>)
       </td>
       <td class="notes"><p>Creates a new function that will call the supplied function in a particular context.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -595,9 +602,9 @@ Y.bind(<i>fn</i>, <i>context</i>)
 .setData(<i>key</i>, <i>value</i>)
 </pre>
       </td>
-      <td class="notes"><p>Stores data associated to a DOM element without modifying the DOM.</p></td>
+      <td class="notes"><p>Stores data associated with a DOM element without modifying the DOM.</p></td>
     </tr>
-    
+
     <tr>
       <td class="code">
 <pre class="code jq">
@@ -613,9 +620,121 @@ Y.bind(<i>fn</i>, <i>context</i>)
       </td>
       <td class="notes"><p>Removes the associated data.</p></td>
     </tr>
-    
+
   </tbody>
 </table>
+
+<h2 id="events">Events</h2>
+<table>
+  <thead>
+    <tr>
+      <th class="jq">jQuery 1.4.2</th>
+      <th class="yui">YUI 3.5.0</th>
+      <th class="notes">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$('#foo').click(<i>fn</i>)
+$('#foo').focus(<i>fn</i>)
+$('#foo').blur(<i>fn</i>)
+$('#foo').mouseout(<i>fn</i>).mouseover(<i>fn</i>)
+
+<i>// jQuery 1.4.2 and later allows you to
+// register events when creating the element
+</i>$('&lt;p/&gt;',{
+  text      :<i>'foo'</i>,
+  className : <i>'bar'</i>,
+  click     : <i>fn</i>,
+  focus     : <i>fn</i>,
+  blur      : <i>fn</i>
+})
+
+<i>//Alternatively, you can use the bind() method</i>
+$('#foo').bind('click', <i>fn</i>);
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.one('#foo').on('click', <i>fn</i>)
+Y.one('#foo').on('focus', <i>fn</i>)
+Y.one('#foo').on('blur', <i>fn</i>)
+Y.one('#foo').on('mouseout', <i>fn</i>)
+Y.one('#foo').on('mouseover', <i>fn</i>)
+
+<i>// Alternatively, YUI allows you to attach multiple
+// subscribers with a single call.</i>
+Y.one('#foo').on({
+  click    : <i>fn</i>,
+  focus    : <i>fn</i>,
+  blur     : <i>fn</i>,
+  mouseout : <i>fn</i>,
+  mouseover: <i>fn</i>
+})
+
+<i>// Or attach a single subscriber to multiple events.</i>
+Y.one("#foo").on(['click', 'focus', 'blur'], <i>fn</i>)
+</pre>
+      </td>
+      <td class="notes">
+        <p>In YUI, <code>.on()</code> is not chainable by default, but multiple subscribers can be attached in one call using the syntax shown here.</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$('#container').delegate('#target', 'click', <i>fn</i>);
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.one('#container').delegate('click', <i>fn</i>, '#target');
+</pre>
+      </td>
+      <td class="notes">
+        <p>Event listener will bind to #container and only fire the callback <i>fn</i> when a event's target is #target (or any other selector)</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$('#target').live('click', <i>fn</i>);
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.one(Y.config.doc).delegate('click', <i>fn</i>, '#target');
+</pre>
+      </td>
+      <td class="notes">
+        <p>jQuery's delegate() is generally preferred over live() because of performance as well as chaining limitations (<a href="http://www.alfajango.com/blog/the-difference-between-jquerys-bind-live-and-delegate/">source</a>).</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$('#foo').trigger('click');
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.one('#foo').simulate('click');
+</pre>
+      </td>
+      <td class="notes">
+        <p>Simulates a <em>click</em> event. In YUI, you'll need the <code>node-event-simulate</code> module.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 
 <h2 id="selectors">Selectors</h2>
 
@@ -623,7 +742,7 @@ Y.bind(<i>fn</i>, <i>context</i>)
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -837,10 +956,11 @@ hidden = Y.all(hidden);
       <td class="code">
 <pre class="code yui">
 var list = Y.all('div'),
+    len  = list.size(),
     last;
 
-if (list.size()) {
-  last = list.item(list.size() - 1);
+if (len) {
+  last = list.item(len - 1);
 }
 </pre>
       </td>
@@ -903,7 +1023,7 @@ if (list.size()) {
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -944,7 +1064,7 @@ a.run();
       </td>
       <td class="notes">
         <p>The basic syntax and capabilities of both animation libraries are very similar. jQuery has convenience methods for effects like <code>.fadeIn()</code>, <code>.slideUp()</code>, etc. jQuery core has two easing functions: 'linear' and 'swing', but jQuery UI comes with <a href="http://jqueryui.com/demos/effect/">many more effects</a> as plugins.</p>
-        <p>YUI has several <a href="http://developer.yahoo.com/yui/3/api/Easing.html">easing algorithms</a> built-in, and offers additional tools such as <a href="http://developer.yahoo.com/yui/3/examples/anim/curve.html">animations over Bezier curves</a>. Make sure to load the <code>'anim'</code> module in your call to <code>YUI().use()</code>.</p>
+        <p>YUI has several <a href="http://yuilibrary.com/yui/docs/api/classes/Easing.html">easing algorithms</a> built-in, and offers additional tools such as <a href="http://yuilibrary.com/yui/docs/anim/curve.html">animations over Bezier curves</a>. Requires the <code>anim</code> module.</p>
       </td>
     </tr>
 
@@ -978,7 +1098,7 @@ Y.one('#foo').hide(<i>true</i>)
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -999,7 +1119,7 @@ Y.one('#foo').hide(<i>true</i>)
     <tr>
       <td class="code"><pre class="code jq">$('div').add('p')</pre></td>
       <td class="code">
-<pre class="code yui">Y.all('div').concat(Y.all('p'));</pre>
+<pre class="code yui">Y.all('div').concat(Y.all('p'))</pre>
       </td>
       <td class="notes">
         <p>
@@ -1013,7 +1133,7 @@ Y.one('#foo').hide(<i>true</i>)
 <pre class="code jq">
 $('<i>.foo</i>').each(
   function() {
-    this.<i>some_method();</i>
+    $(this).<i>some_method();</i>
   }
 );
 </pre>
@@ -1039,26 +1159,19 @@ Y.all('<i>.foo</i>').each(
     <tr>
       <td class="code">
 <pre class="code jq">
-var fn = function(idx) {
-    return this.<i>property</i> === '<i>value</i>';
-};
-$('<i>.foo</i>').filter(fn);
+$('<i>.foo</i>').filter(function (idx) {
+  return this.<i>property</i> === '<i>value</i>';
+});
 </pre>
       </td>
       <td class="code">
 <pre class="code yui">
-var filtered = [];
-Y.all('<i>.foo</i>').each(
-  function(node) {
-    if (node.get('<i>property</i>') === '<i>value</i>') {
-      filtered.push(node);
-    }
-  }
-);
-filtered = Y.all(filtered);
+Y.all('<i>.foo</i>').filter(function (node) {
+  return node.get('<i>property</i>') === '<i>value</i>';
+});
 </pre>
       </td>
-      <td class="notes"><p>Classic functional programming filter function. Given a list of elements, run the function on each and return a list of those which evaluated true. <code>NodeList.filter(fn)</code> is coming to a future point release of YUI.</p></td>
+      <td class="notes"><p>Classic functional programming filter function. Given a list of elements, run the function on each and return a list of those which evaluated true.</p></td>
     </tr>
 
     <tr>
@@ -1075,17 +1188,15 @@ $('<i>.foo</i>').map(
 <pre class="code yui">
 var mapped = [];
 Y.all('<i>.foo</i>').each(
-  function(node) {
-    mapped.push(
-      return some_function(node)
-    );
+  function (node) {
+    mapped.push(some_function(node));
   }
 );
 mapped = Y.all(mapped);
 </pre>
       </td>
       <td class="notes">
-        <p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function. <code>NodeList.map(fn)</code> is coming to a future point release of YUI.</p>
+        <p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function.</p>
       </td>
     </tr>
   </tbody>
@@ -1097,7 +1208,7 @@ mapped = Y.all(mapped);
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1122,7 +1233,7 @@ Y.io(<i>url</i>, {
 </pre>
       </td>
       <td class="notes">
-        <p><a href="http://developer.yahoo.com/yui/3/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>'io'</code> module.</p>
+        <p><a href="http://yuilibrary.com/yui/docs/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>io</code> module.</p>
       </td>
     </tr>
 
@@ -1156,6 +1267,47 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
         <p>In YUI, the <code>node-load</code> module provides this functionality. YUI also optionally supports extracting only a portion of the loaded content if a selector string is passed as the second argument (assuming the content is HTML).
       </td>
     </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$.getJSON(<i>url</i>, <i>successFn</i>);
+</pre>
+</td>
+      <td class="code">
+<pre class="code yui">
+Y.io(<i>url</i>, {
+    on:   {success: <i>successFn</i>}
+});
+</pre>
+      </td>
+      <td class="notes">
+        <p>A remote request for a JSON file. Same-origin policy is enforced.</p>
+        <p>There is no convenience method for this in YUI.</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$.getJSON(
+  "/some/jsonpURL.json?callback=?",
+  <i>successFn</i>
+);
+</pre>
+</td>
+      <td class="code">
+<pre class="code yui">
+Y.jsonp(
+  "/some/jsonpURL.json?callback={callback}",
+  <i>successFn</i>
+);
+</pre>
+      </td>
+      <td class="notes">
+        <p>JSONP requests. Same-origin policy is not enforced.  Requires the <code>jsonp</code> module.</p>
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -1165,7 +1317,7 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.5.0</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1277,8 +1429,8 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
     <tr>
       <td class="code">
 <pre class="code jq">
-.position()
-<i>// {left: 123, top: 456}</i>
+.offset()
+<i>// {left: 123, top: 456, width: 789, height: 1011}</i>
 </pre>
       </td>
       <td class="code">
@@ -1288,9 +1440,146 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 </pre>
       </td>
       <td class="notes">
-        <p>Get the computed x,y coordinates.</p>
+        <p>Get the computed x,y coordinates relative to the document. jQuery also returns the size of the node</p>
+      </td>
+    </tr>
 
-        <p>In jQuery, the coordinates are relative to the nearest ancestor element that is relatively or absolutely positioned. In YUI, they're relative to the document.</p>
+    <tr>
+      <td class="code">
+<pre class="code jq">
+.offset(<i>{ left: 123, top: 456 }</i>)
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+.setXY(123, 456)
+</pre>
+      </td>
+      <td class="notes">
+        <p>Set the x,y coordinates relative to the document.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sectionid">Language Utilities</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th class="jq">jQuery 1.4.3</th>
+      <th class="yui">YUI 3.5.0</th>
+      <th class="notes">Notes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$.each([1, 2, 3], <i>fn(index, value)</i>)
+$.each({ key: value }, <i>fn(key, value)</i>)
+</pre></td>
+      <td class="code">
+<pre class="code yui">
+Y.Array.each([1, 2, 3], <i>fn(value, index)</i>)
+Y.Object.each({ key: value }, <i>fn(value, key)</i>)
+</pre></td>
+      <td class="notes">
+        <p>
+        	Iterate through an array or object. YUI is compatible with the Array <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach">forEach</a> method so the first parameter the callback receives when iterating through an array is the value. In jQuery, the first parameter is the index of the value in the array.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.inArray(<i>value</i>, <i>array</i>)</pre></td>
+      <td class="code"><pre class="code yui">Y.Array.indexOf(<i>array</i>, <i>value</i>)</pre></td>
+      <td class="notes">
+        <p>
+        	Returns the index of the searched value in the specified array.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.type(<i>obj</i>)</pre></td>
+      <td class="code"><pre class="code yui">Y.Lang.type(<i>obj</i>)</pre></td>
+      <td class="notes">
+        <p>
+        	Returns a string representing the type of the specified object. YUI and jQuery results are compatible (see <a href="http://api.jquery.com/jQuery.type/">jQuery's</a>).
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.isPlainObject(<i>obj</i>)</pre></td>
+      <td class="code">
+<pre class="code yui">
+Y.Lang.isObject(<i>obj</i>)
+Y.Lang.isObject(<i>obj</i>, <i>true</i>)
+</pre></td>
+      <td class="notes">
+        <p>
+        	In YUI, <code>Y.Lang.isObject</code> returns true for arrays and functions. Passing true as a second parameter makes it return false if the input is a function.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code">
+<pre class="code jq">
+$.isArray(<i>obj</i>)
+$.isFunction(<i>obj</i>)
+</pre>
+      </td>
+      <td class="code">
+<pre class="code yui">
+Y.Lang.isArray(<i>obj</i>)
+Y.Lang.isFunction(<i>obj</i>)
+Y.Lang.isString(<i>obj</i>)
+Y.Lang.isBoolean(<i>obj</i>)
+Y.Lang.isDate(<i>obj</i>)
+Y.Lang.isNumber(<i>obj</i>)
+Y.Lang.isNull(<i>obj</i>)
+Y.Lang.isUndefined(<i>obj</i>)
+Y.Lang.isValue(<i>obj</i>)
+</pre>
+      </td>
+      <td class="notes">
+        <p>
+        	YUI also has some extra type checking functions. In particular, <code>Y.Lang.isValue()</code> returns false if the object is null, undefined or not a number, and true in any other case.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.isEmptyObject(<i>obj</i>)</pre></td>
+      <td class="code"><pre class="code yui">Y.Object.isEmpty(<i>obj</i>)</pre></td>
+      <td class="notes">
+        <p>
+        	Check if the given object doesn't have any properties.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.makeArray(<i>obj</i>)</pre></td>
+      <td class="code"><pre class="code yui">Y.Array(<i>obj</i>)</pre></td>
+      <td class="notes">
+        <p>
+        	Make an array-like object, for instance the return value of <code>document.getElementsByTagName</code>, into a true array.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="code"><pre class="code jq">$.now()</pre></td>
+      <td class="code"><pre class="code yui">Y.Lang.now()</pre></td>
+      <td class="notes">
+        <p>
+        	Return the current time in milliseconds.
+        </p>
       </td>
     </tr>
   </tbody>
@@ -1304,7 +1593,7 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
   <thead>
     <tr>
       <th class="jq">jQuery 1.4.2</th>
-      <th class="yui">YUI 3.3.0</th>
+      <th class="yui">YUI 3.4.1</th>
       <th class="notes">Notes</th>
     </tr>
   </thead>
@@ -1334,9 +1623,9 @@ Y.one('<i>#message</i>').load('<i>/ajax/test.html</i>', '<i>#foo</i>');
 <h2 id="credits">Credits</h2>
 
 <p>
-  The jQuery - YUI3 Rosetta Stone was originally created by
+  The jQuery - YUI 3 Rosetta Stone was originally created by
   <a href="http://carlos.bueno.org/">Carlos Bueno</a>. It's now maintained by
-  the <a href="http://yuilibrary.com/">YUI team</a> and
+  <a href="http://wonko.com/">Ryan Grove</a> and
   <a href="http://paulirish.com/">Paul Irish</a>.
 </p>
 
