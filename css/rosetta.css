@@ -49,7 +49,7 @@ td {
 
 td, th { padding: 8px 14px; }
 
-td.code { width: 30%; }
+td.code { width: 20%; }
 
 td.notes {
   background: #f2f2f2;
@@ -70,6 +70,7 @@ th {
 
 .jq { color: #900; }
 .yui { color: #009; }
+.aui { color: #446D77; }
 
 .printonly { display: none; }
 
