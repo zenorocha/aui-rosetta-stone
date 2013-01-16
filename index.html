@@ -116,7 +116,7 @@
         <pre class="code aui">A.one('div.foo')</pre>
       </td>
       <td class="notes">
-        <p>jQuery and YUI use similar selector syntax, but jQuery has added extensions, mainly convenience pseudo-classes, to the Sizzle CSS3-compliant selector engine. YUI comes with three different selector engines; see the section on <a href="#selectors">Selectors</a>.
+        <p>jQuery, YUI3, &amp; AUI use similar selector syntax, but jQuery has added extensions, mainly convenience pseudo-classes, to the Sizzle CSS3-compliant selector engine. YUI3 &amp; AUI comes with three different selector engines; see the section on <a href="#selectors">Selectors</a>.
       </td>
     </tr>
 
@@ -136,9 +136,18 @@ if (foo) {
 }
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+var foo = A.one('div.foo');
+
+if (foo) {
+   foo.<i>some_method()</i>;
+}
+</pre>
+      </td>
       <td class="notes">
         <p>Return the first element which matches the selector. <code>:first</code> is a jQuery extension.</p>
-        <p>If no elements match, <code>Y.one()</code> returns <code>null</code> and you should check for it. jQuery selector methods always return a list object with 0 or more elements.<p>
+        <p>If no elements match, <code>Y.one()</code> &amp; <code>A.one()</code> returns <code>null</code> and you should check for it. jQuery selector methods always return a list object with 0 or more elements.<p>
       </td>
     </tr>
 
