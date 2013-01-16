@@ -185,8 +185,17 @@ if (foo.size()) {
 }
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+var foo = A.all('div.foo');
+
+if (foo.size()) {
+   <i>// do something</i>
+}
+</pre>
+      </td>
       <td class="notes">
-        <p>If no elements match the selector, <code>Y.all()</code> returns an empty <code>NodeList</code> object. jQuery will return an empty list <code>[]</code> that is loaded with special jQ methods. Both are <a href="http://javascript.crockford.com/style2.html">truthy</a> even if they contain no elements, so use <code>NodeList.size()</code> and <code>[].length</code> to check for emptiness.<p>
+        <p>If no elements match the selector, <code>Y.all()</code> &amp; <code>A.all()</code> returns an empty <code>NodeList</code> object. jQuery will return an empty list <code>[]</code> that is loaded with special jQ methods. Both are <a href="http://javascript.crockford.com/style2.html">truthy</a> even if they contain no elements, so use <code>NodeList.size()</code> and <code>[].length</code> to check for emptiness.<p>
       </td>
     </tr>
 
