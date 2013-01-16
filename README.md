@@ -1,13 +1,11 @@
-jQuery - YUI3 Rosetta Stone
+jQuery - YUI3 - AlloyUI: Rosetta Stone
 ===========================
 
-The [jQuery - YUI3 Rosetta Stone][rs] is a guide to idioms in [YUI3][yui3] and
-[jQuery][jquery], intended as an aid for developers who are familiar with one
+The [jQuery - YUI3 - AlloyUI: Rosetta Stone][auirs] is a guide to idioms in [jQuery][jquery], [YUI3][yui3] and [AlloyUI][alloyui] intended as an aid for developers who are familiar with one
 library and are interested in using or learning more about the other. It may
 also be helpful as a general cheat sheet for both libraries.
 
-The Rosetta Stone was originally created by [Carlos Bueno][cb], and is now
-maintained by the YUI team and Paul Irish of the jQuery team.
+The original [jQuery - YUI3: Rosetta Stone][rs] was created by [Carlos Bueno][cb], and is now maintained by the YUI team and Paul Irish of the jQuery team. This is a fork that added [AlloyUI][alloyui], and is maintained by Liferay.
 
 This is a reference, not an evaluation or comparison of the libraries. If you
 have an opinion about which one is "better", that's great, but we don't want to
@@ -62,5 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [gh]:http://github.com/rgrove/jquery-yui3-rosetta-stone/
 [issues]:http://github.com/rgrove/jquery-yui3-rosetta-stone/issues
 [jquery]:http://jquery.com/
+[alloyui]:http://alloyui.com/
 [rs]:http://jsrosettastone.com/
+[auirs]:http://auirosettastone.com/
 [yui3]:http://developer.yahoo.com/yui/3/
