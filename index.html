@@ -1032,24 +1032,28 @@ A.all(':hidden')
     <tr>
       <td class="code"><pre class="code jq">$('#id')</pre></td>
       <td class="code"><pre class="code yui">Y.all('#id')</pre></td>
+      <td class="code"><pre class="code aui">A.all('#id')</pre></td>
       <td class="notes"><p>CSS3. Identity selector.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$('input:image')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=image]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':image')</pre></td>
       <td class="notes"><p>Extension. Selects all inputs of type image.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':input')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input,textarea,select,button')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':input')</pre></td>
       <td class="notes"><p>Extension. Selects all user-editable form elements.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':last-child')</pre></td>
       <td class="code"><pre class="code yui">Y.all(':last-child')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':last-child')</pre></td>
       <td class="notes"><p>CSS3.</p></td>
     </tr>
 
@@ -1073,48 +1077,56 @@ if (len) {
     <tr>
       <td class="code"><pre class="code jq">$('input[type=checkbox][checked]')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=checkbox][checked]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':checkbox:checked')</pre></td>
       <td class="notes"><p>CSS3, multiple attribute selector</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':not(<i>div</i>)')</pre></td>
       <td class="code"><pre class="code yui">Y.all(':not(<i>div</i>)')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':not(<i>div</i>)')</pre></td>
       <td class="notes"><p>CSS3. Negation selector.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':password')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=password]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':password')</pre></td>
       <td class="notes"><p>Extension.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':radio')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=radio]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':radio')</pre></td>
       <td class="notes"><p>Extension.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':reset')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=reset]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':reset')</pre></td>
       <td class="notes"><p>Extension.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':selected')</pre></td>
       <td class="code"><pre class="code yui">Y.all('option[selected]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':selected')</pre></td>
       <td class="notes"><p>Extension.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':submit')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=submit]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':submit')</pre></td>
       <td class="notes"><p>Extension.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$(':text')</pre></td>
       <td class="code"><pre class="code yui">Y.all('input[type=text]')</pre></td>
+      <td class="code"><pre class="code aui">A.all(':text')</pre></td>
       <td class="notes"><p>Extension. Does not select <code>textarea</code> elements.</p></td>
     </tr>
   </tbody>
@@ -1224,12 +1236,14 @@ Y.one('#foo').hide(<i>true</i>)
     <tr>
       <td class="code"><pre class="code jq">$('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
       <td class="code"><pre class="code yui">Y.all('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
+      <td class="code"><pre class="code aui">A.all('<i>.foo</i>').<i>array_method</i>(<i>args</i>)</pre></td>
       <td class="notes"><p>Any Array operation that you can perform on a jQuery list can be translated to YUI in this form. YUI NodeList objects are not native Arrays, but do provide wrapper functions for the most common array methods as of 3.3.0.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$('div').slice(<i>x</i>, <i>y</i>)</pre></td>
       <td class="code"><pre class="code yui">Y.all('div').slice(<i>x</i>, <i>y</i>)</pre></td>
+      <td class="code"><pre class="code aui">A.all('div').slice(<i>x</i>, <i>y</i>)</pre></td>
       <td class="notes"><p>Return the <i>xth</i> to the <i>yth</i> div elements.</p></td>
     </tr>
 
@@ -1238,6 +1252,7 @@ Y.one('#foo').hide(<i>true</i>)
       <td class="code">
 <pre class="code yui">Y.all('div').concat(Y.all('p'))</pre>
       </td>
+      <td class="code"><pre class="code aui"></pre></td>
       <td class="notes">
         <p>
         Add nodes that match the specified selector.
@@ -1264,12 +1279,22 @@ Y.all('<i>.foo</i>').each(
 );
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+A.all('<i>.foo</i>').each(
+  function() {
+    this.<i>some_method();</i>
+  }
+);
+</pre>
+      </td>
       <td class="notes"><p><code>.each()</code> is like the <code>for</code> loop. YUI's each() returns the original NodeList to help with chaining.</p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">$('<i>.foo</i>').filter('<i>.bar</i>')</pre></td>
       <td class="code"><pre class="code yui">Y.all('<i>.foo</i>').filter('<i>.bar</i>')</pre></td>
+      <td class="code"><pre class="code aui">A.all('<i>.foo</i>').filter('<i>.bar</i>')</pre></td>
       <td class="notes"><p>The <code>.filter()</code> method in both libraries both take CSS selectors as filter criteria. jQuery's <code>.filter()</code> can also take a function.</p></td>
     </tr>
 
@@ -1312,8 +1337,32 @@ Y.all('<i>.foo</i>').each(
 mapped = Y.all(mapped);
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+var mapped = [];
+A.all('<i>.foo</i>').each(
+  function(node) {
+    mapped.push(
+      some_function(node)
+    );
+  }
+);
+mapped = A.all(mapped);
+
+<i>// or</i>
+
+A=AUI().use('array-extras');
+var n = A.all('<i>foo</i>');
+
+var map = A.Array.map(n.getDOM(), function(item, index, collection){
+  return some_function(<i>item</i>);
+});
+A.all(map);
+</pre>
+      </td>
       <td class="notes">
         <p>jQuery's <code>.map()</code> returns a jQuery-wrapped array of the return values of calls to the given function.</p>
+        <p>AUI <code>map</code> method requires the AUI <code>'array-extras'</code> module</p>
       </td>
     </tr>
   </tbody>
@@ -1349,8 +1398,18 @@ Y.io(<i>url</i>, {
 });
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+A.io.request(<i>url</i>, {
+  method: <i>method</i>,
+  dataType: <i>data</i>,
+  on: {success: <i>successFn</i>}
+});
+</pre>
+      </td>
       <td class="notes">
         <p><a href="http://yuilibrary.com/yui/docs/io/">YUI.io</a> has extra options for failure mode callbacks, headers, cross-frame i/o, etc. <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax()</a> has some interesting options for async, context, and filtering. Make sure to load the YUI <code>io</code> module.</p>
+        <p>AUI <code>'aui-io'</code> module.</p>
       </td>
     </tr>
 
@@ -1365,8 +1424,19 @@ Y.io(<i>url</i>, {
 });
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+A.io.request(<i>url</i>, {
+  method: <i>method</i>,
+  data: <i>data</i>,
+  on:   {success: <i>successFn</i>},
+  xdr:  {use: 'flash'}
+})
+</pre>
+      </td>
       <td class="notes">
         <p>Cross-domain requests via a Flash helper. No jQuery equivalent.</p>
+        <p>AUI <code>'aui-io'</code> module.</p>
       </td>
     </tr>
 
@@ -1457,18 +1527,28 @@ Y.jsonp(
 .hasClass('<i>foo</i>')
 </pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+.addClass('<i>foo</i>')
+.removeClass('<i>foo</i>')
+.toggleClass('<i>foo</i>')
+.hasClass('<i>foo</i>')
+</pre>
+      </td>
       <td class="notes"><p>CSS class name manipulation.<p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">.removeClass('<i>foo</i>').addClass('<i>bar</i>')</pre></td>
       <td class="code"><pre class="code yui">.replaceClass('<i>foo</i>', '<i>bar</i>')</pre></td>
+      <td class="code"><pre class="code aui">.replaceClass('<i>foo</i>', '<i>bar</i>')</pre></td>
       <td class="notes"><p>Replace node's CSS class 'foo' with 'bar'.<p></td>
     </tr>
 
     <tr>
       <td class="code"><pre class="code jq">.css('display', 'block')</pre></td>
       <td class="code"><pre class="code yui">.setStyle('display', 'block')</pre></td>
+      <td class="code"><pre class="code aui">.setStyle('display', 'block')</pre></td>
       <td class="notes"><p>Set a single CSS property<p></td>
     </tr>
 
@@ -1490,11 +1570,20 @@ Y.jsonp(
     display: 'block'
 })</pre>
       </td>
+      <td class="code">
+<pre class="code aui">
+.setStyles({
+    height:  100,
+    width:   100,
+    display: 'block'
+})</pre>
+      </td>
       <td class="notes"><p>Set multiple CSS properties with a dictionary.</p></td>
     </tr>
     <tr>
       <td class="code"><pre class="code jq">.css('display')</pre></td>
       <td class="code"><pre class="code yui">.getStyle('display')</pre></td>
+      <td class="code"><pre class="code aui">.getStyle('display')</pre></td>
       <td class="notes"><p>Get the current value for a CSS property.</p></td>
     </tr>
     <tr>
@@ -1509,7 +1598,11 @@ Y.jsonp(
 .getComputedStyle('height')
 .getComputedStyle('width')
 </pre></td>
-      <td class="notes"><p>Computed height / width. Excludes padding and borders.</p></td>
+      <td class="code"><pre class="code aui">get('offsetWidth') - getPadding('lr') - getBorderWidth('lr')</pre></td>
+      <td class="notes">
+        <p>Computed height / width. Excludes padding and borders.</p>
+        <p>AUI <i>getBorderWidth</i> has values of t(top), l(left), r(right), b(bottom)</p>
+      </td>
     </tr>
 
     <tr>
@@ -1524,7 +1617,11 @@ Y.jsonp(
 .get('clientHeight')
 .get('clientWidth')
 </pre></td>
-      <td class="notes"><p>Includes padding but not border</p></td>
+      <td class="code"><pre class="code aui">get('offsetWidth') - getBorderWidth('lr')</pre></td>
+      <td class="notes">
+        <p>Includes padding but not border</p>
+        <p>AUI <i>getBorderWidth</i> has values of t(top), l(left), r(right), b(bottom)</p>
+      </td>
     </tr>
 
     <tr>
@@ -1536,6 +1633,12 @@ Y.jsonp(
       </td>
       <td class="code">
 <pre class="code yui">
+.get('offsetHeight')
+.get('offsetWidth')
+</pre>
+      </td>
+      <td class="code">
+<pre class="code aui">
 .get('offsetHeight')
 .get('offsetWidth')
 </pre>
